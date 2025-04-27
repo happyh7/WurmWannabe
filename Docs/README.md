@@ -1,0 +1,29 @@
+# WurmWannabe - Survival Crafting Demo
+
+## Projektbeskrivning
+
+Detta är ett proof-of-concept för ett 2D top-down survival crafting-spel. Fokus ligger på grundläggande system: insamling, crafting, verktygsanvändning, hållbarhet och färdighetsutveckling. Projektet är designat för att vara lätt att bygga ut med fler system och mekaniker.
+
+## Dokumentstruktur
+
+- **GameDesign.md** – Spelidé, mål, vision, viktiga funktioner och expansionsmöjligheter.
+- **UI_UX.md** – Allt om användargränssnitt, feedback, popup-meddelanden, ljud/animationer och UI-element.
+- **SystemArchitecture.md** – Arkitektur, systemstruktur, managers, ScriptableObjects och utbyggbarhet.
+- **Roadmap.md** – Steg-för-steg-plan för utveckling, teststeg och felsökning.
+- **AssetsAndArt.md** – Art style, grafik, resurser som behövs och tips om placeholders.
+- **BugAndFeatureList.md** – Lista över buggar, förbättringar och framtida features.
+
+## Kom igång
+
+1. Läs **GameDesign.md** för att förstå spelets grundidé och mål.
+2. Följ **Roadmap.md** för att bygga spelet steg för steg.
+3. Använd **BugAndFeatureList.md** för att rapportera och hålla koll på buggar och förbättringar.
+
+## Tips
+
+- Uppdatera dokumentationen när nya system eller resurser läggs till.
+- Håll README.md uppdaterad med projektets status och viktiga förändringar.
+
+## Kontakt
+
+Projektet utvecklas av en nybörjare i Unity med stöd av AI-assistenten Cursor. 
