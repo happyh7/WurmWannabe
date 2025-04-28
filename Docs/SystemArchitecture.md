@@ -3,8 +3,8 @@
 ## Arkitektur och systemstruktur
 
 - Föremål: Definieras via Scriptable Objects (ItemData).
-- Inventory: Manager-komponent som hanterar en lista av Items.
-- Crafting: Manager som kontrollerar möjliga kombinationer.
+- Inventory: Manager-komponent som hanterar en dictionary av ItemData och antal (Dictionary<ItemData, int>).
+- Crafting: Manager som kontrollerar möjliga kombinationer (CraftingManager).
 - Equipment: Hanterar vad som är utrustat och visar i UI.
 - Interaction System: Raycast eller collider-baserat system för att visa prompts.
 - Durability System: Varje verktyg har en durability-variabel.

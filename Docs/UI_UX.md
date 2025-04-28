@@ -12,6 +12,7 @@
 | Element            | Beskrivning                                                        |
 |--------------------|--------------------------------------------------------------------|
 | Inventory          | Lista eller rutnätsbaserat föremålsfönster.                        |
+| Crafting Button    | Knapp för att crafta Axe från Stick + Stone.                      |
 | Equip Slot         | Visuell ikon på spelarens sprite som visar vad som är utrustat.     |
 | Interaktionsprompt | Text nära botten av skärmen: "Tryck E för att hugga/plocka upp".   |
 | Durability-bar     | Visas ovanför eller bredvid utrustade verktyg.                     |
@@ -32,4 +33,8 @@
 ## Tips
 
 - Använd enkla färgade former som placeholder-grafik tills riktiga sprites finns.
-- Kommentera koden löpande för att underlätta förståelse och felsökning. 
+- Kommentera koden löpande för att underlätta förståelse och felsökning.
+
+## Inventory
+
+Inventory: Lagra och hantera föremål. Inventory visar nu namn och antal av varje item-typ. 

@@ -6,6 +6,8 @@ Här samlas buggar, förbättringar och framtida features. Bocka av när något 
 - [ ] Kan plocka upp item trots fullt inventory
 - [ ] Popup visas inte när man försöker hugga träd utan yxa
 - [ ] XP-popup visas flera gånger vid samma händelse
+- [ ] Popup eller feedback om crafting misslyckas
+- [ ] Feedback i UI när man equippar Axe
 
 ## Features/Förbättringar
 - [ ] Lägg till hunger-system

@@ -14,8 +14,8 @@ Skapa ett stabilt och utbyggbart demoprojekt för framtida utveckling.
 ## Viktiga Funktioner
 
 - Inventory System: Samla och lagra föremål.
-- Crafting System: Kombinera föremål för att skapa nya verktyg.
-- Equipment System: Utrusta föremål och hantera verktyg i handen.
+- Crafting System: Kombinera föremål för att skapa nya verktyg. (Implementerat)
+- Equipment System: Utrusta föremål och hantera verktyg i handen. (På gång)
 - Interaktionssystem: Interagera med objekt i världen (t.ex. hugga träd).
 - Tool Durability: Verktyg har hållbarhet som minskar vid användning.
 - Tool Breaking & Repair: Trasiga verktyg kan repareras och återanvändas.

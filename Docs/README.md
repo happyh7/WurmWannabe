@@ -23,6 +23,7 @@ Detta är ett proof-of-concept för ett 2D top-down survival crafting-spel. Foku
 
 - Uppdatera dokumentationen när nya system eller resurser läggs till.
 - Håll README.md uppdaterad med projektets status och viktiga förändringar.
+- Crafting-systemet är nu implementerat och testat.
 
 ## Kontakt
 
