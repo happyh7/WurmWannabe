@@ -1,0 +1,21 @@
+=== Spelloggar 2025-04-29_10-20-52 ===
+Logger initialiserad med minimumLogLevel: Info
+[10:20:58.148] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[10:20:59.309] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[10:21:00.135] [Info] [SetItem] Försöker sätta Stone i slot
+[10:21:00.136] [Info] [SetItem] Försöker sätta Stick i slot
+[10:21:02.011] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[10:21:02.012] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[10:21:02.012] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[10:21:02.013] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[10:21:02.013] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[10:21:02.016] [Info] [SetItem] Försöker sätta Axe i slot
+[10:21:03.053] [Info] [OnBeginDrag] Börjar dra Axe
+[10:21:06.097] [Info] [OnBeginDrag] Börjar dra Axe
+[10:21:07.042] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[10:21:07.042] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[10:21:07.043] [Info] [EquipAxe] Tog bort Axe från inventory
+[10:21:07.043] [Info] [SetItem] Försöker sätta Axe i slot
+[10:21:07.043] [Info] [EquipAxe] Equippade Axe
+[10:21:07.043] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[10:21:08.276] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe

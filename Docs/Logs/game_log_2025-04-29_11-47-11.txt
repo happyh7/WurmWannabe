@@ -1,0 +1,38 @@
+=== Spelloggar 2025-04-29_11-47-11 ===
+Logger initialiserad med minimumLogLevel: Info
+[11:47:15.660] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[11:47:16.679] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[11:47:18.733] [Info] [SetItem] Försöker sätta Stone i slot
+[11:47:18.733] [Info] [SetItem] Försöker sätta Stick i slot
+[11:47:19.849] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[11:47:19.850] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[11:47:19.850] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[11:47:19.850] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[11:47:19.850] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[11:47:19.860] [Info] [SetItem] Försöker sätta Axe i slot
+[11:47:20.768] [Info] [OnBeginDrag] Börjar dra Axe
+[11:47:21.467] [Info] [OnDrop] Droppar från InventorySlot till InventorySlot
+[11:47:21.468] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[11:47:21.468] [Info] [SetItem] Försöker sätta Axe i slot
+[11:47:21.880] [Info] [OnBeginDrag] Börjar dra Axe
+[11:47:22.526] [Info] [AxeSlot.OnDrop] Droppar Axe på AxeSlot
+[11:47:22.527] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[11:47:22.527] [Info] [EquipAxe] Tog bort Axe från inventory
+[11:47:22.527] [Info] [SetItem] Försöker sätta Axe i slot
+[11:47:22.527] [Info] [EquipAxe] Equippade Axe
+[11:47:22.528] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[11:47:22.994] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe
+[11:47:23.711] [Info] [AxeSlot.OnEndDrag] Släpper Axe
+[11:47:24.539] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe
+[11:47:24.889] [Info] [AxeSlot.OnEndDrag] Släpper Axe
+[11:47:30.167] [Info] [AxeSlot.OnPointerClick] Dubbelklick på Axe, unequippar
+[11:47:30.167] [Info] [UnequipAxe] Börjar unequippa Axe
+[11:47:30.168] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[11:47:30.168] [Info] [UnequipAxe] Rensat axeSlot och equippedAxe referens
+[11:47:30.168] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[11:47:30.168] [Info] [UnequipAxe] Lagt till Axe i inventory
+[11:47:30.168] [Info] [SetItem] Försöker sätta Axe i slot
+[11:47:31.027] [Info] [OnBeginDrag] Börjar dra Axe
+[11:47:31.260] [Info] [OnDrop] Droppar från InventorySlot till InventorySlot
+[11:47:31.260] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[11:47:31.260] [Info] [SetItem] Försöker sätta Axe i slot

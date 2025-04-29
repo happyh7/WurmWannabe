@@ -1,0 +1,29 @@
+=== Spelloggar 2025-04-29_09-59-18 ===
+Logger initialiserad med minimumLogLevel: Info
+[09:59:25.079] [Info] [SetItem] Försöker sätta Stone i slot
+[09:59:25.080] [Info] [SetItem] Försöker sätta Stick i slot
+[09:59:26.427] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[09:59:26.427] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[09:59:26.427] [Info] [SetItem] Försöker sätta Axe i slot
+[09:59:27.303] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[09:59:27.303] [Info] [EquipAxe] Tog bort Axe från inventory
+[09:59:27.304] [Info] [SetItem] Försöker sätta Axe i slot
+[09:59:27.304] [Info] [EquipAxe] Equippade Axe
+[09:59:27.304] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[09:59:28.539] [Info] [AxeSlot.OnPointerClick] Dubbelklick på Axe, unequippar
+[09:59:28.539] [Info] [UnequipAxe] Börjar unequippa Axe
+[09:59:28.540] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[09:59:28.540] [Info] [UnequipAxe] Rensat axeSlot och equippedAxe referens
+[09:59:28.540] [Info] [UnequipAxe] Lagt till Axe i inventory
+[09:59:28.540] [Info] [SetItem] Försöker sätta Axe i slot
+[09:59:30.443] [Info] [AxeSlot.OnDrop] Droppar Axe på AxeSlot
+[09:59:30.443] [Info] [EquipAxe] Tog bort Axe från inventory
+[09:59:30.443] [Info] [SetItem] Försöker sätta Axe i slot
+[09:59:30.444] [Info] [EquipAxe] Equippade Axe
+[09:59:30.444] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[09:59:31.036] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe
+[09:59:31.709] [Info] [OnDrop] Försöker droppa Axe från AxeSlot till InventorySlot
+[09:59:31.710] [Info] [OnDrop] Flyttar Axe till tom slot
+[09:59:31.710] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[09:59:31.710] [Info] [SetItem] Försöker sätta Axe i slot
+[09:59:31.711] [Info] [ClearSlot] Rensar slot som innehöll: Axe

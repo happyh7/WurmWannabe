@@ -1,66 +1,65 @@
 # Aktuella Steg - WurmWannabe
 
-Här listas mindre, hanterbara delsteg att arbeta med just nu. När dessa är klara kan projektet laddas upp till GitHub.
+Här listas mindre, hanterbara delsteg att arbeta med just nu.
 
-## Förberedelser (Git och projektstruktur)
+## Nästa steg
 
-- [x] Installera och konfigurera Git om det inte redan är gjort.
-- [x] Skapa ett nytt Git-repo i projektmappen.
-- [x] Lägg till en .gitignore-fil för Unity-projekt (t.ex. via https://github.com/github/gitignore/blob/main/Unity.gitignore).
-- [x] Lägg till och committa nuvarande projektstruktur och dokumentation.
-- [x] Skapa ett nytt repo på GitHub och pusha upp projektet.
-
-## Första Unity-stegen
-
-- [ ] Spara din första scen som "MainScene" i Scenes-mappen.
-- [ ] Skapa en enkel sprite till spelaren (t.ex. en blå cirkel).
-- [ ] Lägg in spelarspriten i scenen och döp GameObject till "Player".
-- [ ] Lägg till en Rigidbody2D på Player (Body Type = Dynamic).
-- [ ] Lägg till en CircleCollider2D på Player.
-- [ ] Skapa ett nytt script: "PlayerController.cs" och lägg på Player.
-- [ ] Skriv kod så att spelaren kan röra sig med WASD eller piltangenterna.
-- [ ] Testa att spelaren kan röra sig i scenen. Skriv gärna kommentarer i koden.
-
-## Nästa steg: Pickup-items och insamling
-
-- [x] Skapa en sprite för Stick (en brun liten pinne).
-- [x] Skapa en sprite för Stone (en liten grå sten).
-- [x] Skapa ett GameObject för Stick i scenen:
-    - [x] Lägg till SpriteRenderer med Stick-spriten.
-    - [x] Lägg till en BoxCollider2D (IsTrigger = true).
-- [x] Spara Stick som en Prefab i Assets/Prefabs och ta bort från scenen.
-- [x] Skapa ett GameObject för Stone i scenen:
-    - [x] Lägg till SpriteRenderer med Stone-spriten.
-    - [x] Lägg till en BoxCollider2D (IsTrigger = true).
-- [x] Spara Stone som en Prefab i Assets/Prefabs och ta bort från scenen.
-- [x] Skapa nytt script: "PickupItem.cs" och lägg på Stick och Stone-prefab.
-- [x] PickupItem-scriptet ska:
-    - [x] Kunna plockas upp med E-tangent.
-    - [x] Lägga till föremålet i spelarens inventory (placeholder-funktion om inventory inte finns än).
-- [x] Testa att du kan plocka upp Stick och Stone. Lägg till placeholder-ljud om möjligt.
-
-## Nästa steg: Inventory-system (enkel version)
-
-- [ ] Skapa nytt script: "InventoryManager.cs".
-- [ ] InventoryManager ska:
-    - [ ] Ha en lista över föremål.
-    - [ ] Kunna lägga till nya föremål.
-- [ ] Skapa ett enkelt UI för Inventory:
-    - [ ] Canvas > Panel > Text för att visa föremålen.
-    - [ ] Lägg till "InventoryUI.cs"-script för att hantera visning.
-- [ ] Koppla PickupItem till InventoryManager så att föremål faktiskt läggs till i inventory.
-- [ ] Testa att plockade föremål visas i inventoryt.
-
-## Nästa steg: Förbättra inventoryt
-
-- [ ] Visa antal av varje föremål i inventoryt (t.ex. "Stick x3").
-- [ ] Ändra InventoryManager så att den hanterar flera av samma item.
-- [ ] Ändra InventoryUI så att den visar antal av varje item.
-- [ ] Testa att plocka upp flera av samma föremål och se att det visas korrekt i UI.
-
----
-
-När dessa steg är klara:
-- Markera dem som avklarade.
 - Ladda upp projektet till GitHub om det inte redan är gjort.
-- Skapa en ny lista med nästa delmål! 
+- Skapa en ny lista med nästa delmål!
+
+## Träd och trädfällning
+
+### Skapa träd-prefab
+- [ ] Skapa en ny sprite för träd:
+    - Skapa en grön cirkel för trädkronan
+    - Lägg till en brun rektangel för stammen
+    - Spara spriten i Assets/Sprites/Environment
+
+- [ ] Skapa ett GameObject för träd:
+    - Skapa ett nytt tomt GameObject och döp det till "Tree"
+    - Lägg till en SpriteRenderer och sätt träd-spriten
+    - Lägg till en BoxCollider2D som passar trädets form
+    - Justera storleken så trädet ser bra ut i förhållande till spelaren
+
+- [ ] Spara träd-prefaben:
+    - Dra GameObject:et till Assets/Prefabs/Environment
+    - Ta bort trädet från scenen
+    - Placera ut några träd i scenen för testning
+
+### Implementera trädfällning
+- [ ] Skapa TreeHealth.cs script:
+    - Skapa en ny C#-script i Assets/Scripts/Environment
+    - Lägg till variabler för trädets HP och max HP
+    - Implementera metod för att ta skada (TakeDamage)
+    - Lägg till en trigger-collider för att detektera när spelaren är nära
+
+- [ ] Koppla ihop med EquipManager:
+    - Uppdatera TreeHealth för att kolla om spelaren har en yxa utrustad
+    - Lägg till en metod för att kontrollera avstånd till spelaren
+    - Implementera logik för att ta skada när spelaren trycker E med yxa
+
+- [ ] Lägg till visuell feedback:
+    - Skapa en hälsomätare som visas när spelaren är nära trädet
+    - Lägg till en enkel animation/effekt när trädet tar skada
+    - Visa ett meddelande när spelaren försöker hugga utan yxa
+
+- [ ] Implementera trädfällning:
+    - När HP når 0, spela upp en animation
+    - Spawna några Stick-items när trädet fälls
+    - Ta bort trädet från scenen
+
+### Testning och polish
+- [ ] Testa grundläggande funktionalitet:
+    - Kontrollera att träd tar skada när man hugger med yxa
+    - Verifiera att man inte kan hugga utan yxa
+    - Säkerställ att avståndskontrollen fungerar
+
+- [ ] Lägg till ljud och effekter:
+    - Lägg till ljud för huggning
+    - Lägg till partikeleffekt när trädet tar skada
+    - Lägg till en större effekt när trädet fälls
+
+- [ ] Balansering och finjustering:
+    - Justera trädets HP
+    - Balansera skadan som yxan gör
+    - Finjustera avståndet för interaktion

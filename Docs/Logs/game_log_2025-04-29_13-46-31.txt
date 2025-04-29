@@ -1,0 +1,80 @@
+=== Spelloggar 2025-04-29_13-46-31 ===
+Logger initialiserad med minimumLogLevel: Info
+[13:46:37.576] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[13:46:37.578] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[13:46:38.965] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[13:46:38.966] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[13:46:39.855] [Info] [SetItem] Försöker sätta Stone i slot
+[13:46:39.856] [Info] [SetItem] Försöker sätta Stick i slot
+[13:46:41.515] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[13:46:41.515] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[13:46:41.518] [Info] [CraftAxe] Laddade yxa. isStackable: False
+[13:46:41.518] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[13:46:41.518] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[13:46:41.519] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[13:46:41.519] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[13:46:41.520] [Info] [SetItem] Försöker sätta Axe i slot
+[13:46:43.307] [Info] [OnBeginDrag] Börjar dra Axe
+[13:46:43.586] [Info] [OnDrop] Droppar från InventorySlot till InventorySlot
+[13:46:43.586] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:46:43.586] [Info] [SetItem] Försöker sätta Axe i slot
+[13:46:44.024] [Info] [OnBeginDrag] Börjar dra Axe
+[13:46:44.275] [Info] [OnDrop] Droppar från InventorySlot till InventorySlot
+[13:46:44.276] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:46:44.276] [Info] [SetItem] Försöker sätta Axe i slot
+[13:46:44.635] [Info] [OnBeginDrag] Börjar dra Axe
+[13:46:45.178] [Info] [AxeSlot.OnDrop] Droppar Axe på AxeSlot
+[13:46:45.178] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[13:46:45.178] [Info] [EquipAxe] Tog bort Axe från inventory
+[13:46:45.179] [Info] [SetItem] Försöker sätta Axe i slot
+[13:46:45.179] [Info] [EquipAxe] Equippade Axe
+[13:46:45.179] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:46:45.575] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe
+[13:46:45.869] [Info] [OnDrop] Droppar från AxeSlot till InventorySlot
+[13:46:45.870] [Info] [UnequipAxeToSlot] Börjar unequippa Axe till specifik slot
+[13:46:45.870] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:46:45.870] [Info] [UnequipAxeToSlot] Rensat axeSlot och equippedAxe referens
+[13:46:45.870] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[13:46:45.871] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[13:46:45.871] [Info] [SetItem] Försöker sätta Axe i slot
+[13:46:45.871] [Info] [UnequipAxeToSlot] Lagt till Axe i inventory
+[13:46:45.871] [Info] [SetItem] Försöker sätta Axe i slot
+[13:46:45.871] [Info] [UnequipAxeToSlot] Satt Axe i target slot
+[13:46:45.871] [Info] [AxeSlot.OnEndDrag] Släpper Axe
+[13:46:46.848] [Info] [OnBeginDrag] Börjar dra Axe
+[13:46:47.034] [Info] [OnDrop] Droppar från InventorySlot till InventorySlot
+[13:46:47.034] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:46:47.034] [Info] [SetItem] Försöker sätta Axe i slot
+[13:47:37.089] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[13:47:37.089] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[13:47:37.089] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:47:37.090] [Info] (Upprepat 1 gånger) [ClearSlot] Rensar slot som innehöll: Axe
+[13:47:37.090] [Info] [SetItem] Försöker sätta Axe i slot
+[13:47:37.090] [Info] [SetItem] Försöker sätta Stone i slot
+[13:47:38.059] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[13:47:38.060] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[13:47:38.060] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[13:47:38.060] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:47:38.060] [Info] [SetItem] Försöker sätta Axe i slot
+[13:47:38.060] [Info] [SetItem] Försöker sätta Stone i slot
+[13:47:38.060] [Info] [SetItem] Försöker sätta Stick i slot
+[13:47:40.008] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[13:47:40.008] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[13:47:40.008] [Info] [CraftAxe] Laddade yxa. isStackable: False
+[13:47:40.009] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[13:47:40.009] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[13:47:40.009] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[13:47:40.009] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[13:47:40.010] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:47:40.010] [Info] [SetItem] Försöker sätta Axe i slot
+[13:47:41.293] [Info] [OnBeginDrag] Börjar dra Axe
+[13:47:41.570] [Info] [OnDrop] Droppar från InventorySlot till InventorySlot
+[13:47:41.570] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:47:41.571] [Info] [SetItem] Försöker sätta Axe i slot
+[13:47:42.567] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[13:47:42.568] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[13:47:42.568] [Info] [EquipAxe] Tog bort Axe från inventory
+[13:47:42.568] [Info] [SetItem] Försöker sätta Axe i slot
+[13:47:42.568] [Info] [EquipAxe] Equippade Axe
+[13:47:42.568] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[13:47:43.600] [Warning] [CraftAxe] Du har inte tillräckligt med material för att crafta en yxa.

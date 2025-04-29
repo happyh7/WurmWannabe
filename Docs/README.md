@@ -13,17 +13,34 @@ Detta är ett proof-of-concept för ett 2D top-down survival crafting-spel. Foku
 - **AssetsAndArt.md** – Art style, grafik, resurser som behövs och tips om placeholders.
 - **BugAndFeatureList.md** – Lista över buggar, förbättringar och framtida features.
 
-## Kom igång
+## Implementerade System
 
-1. Läs **GameDesign.md** för att förstå spelets grundidé och mål.
-2. Följ **Roadmap.md** för att bygga spelet steg för steg.
-3. Använd **BugAndFeatureList.md** för att rapportera och hålla koll på buggar och förbättringar.
+- **Inventory System**
+  - Grid-baserat inventory med drag-and-drop funktionalitet
+  - Stöd för stackable och non-stackable items
+  - Öppnas/stängs med I-tangenten
+
+- **Equipment System**
+  - Equipment slot för yxa
+  - Drag-and-drop eller dubbelklick för att equip/unequip
+  - Visuell feedback för equipped items
+
+- **Crafting System**
+  - Grundläggande crafting av yxa från pinne och sten
+  - Visuell feedback vid crafting
+
+## Nästa Steg
+
+- Implementera trädfällningssystem med:
+  - Interaktiva träd med hälsosystem
+  - Yxanvändning för trädfällning
+  - Resursutvinning från fällda träd
 
 ## Tips
 
 - Uppdatera dokumentationen när nya system eller resurser läggs till.
 - Håll README.md uppdaterad med projektets status och viktiga förändringar.
-- Crafting-systemet är nu implementerat och testat.
+- Se StepList.md för detaljerade steg i den aktuella utvecklingsfasen.
 
 ## Kontakt
 

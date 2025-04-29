@@ -8,65 +8,65 @@
        - Assets/Scripts/UI
        - Assets/ScriptableObjects
        - Assets/Scenes
-[ ] 2b. Sätt upp versionshantering (t.ex. Git) för projektet.
-[ ] 2c. Skapa en README.md i projektroten med projektbeskrivning och status.
-[ ] 3. Spara din första scen som "MainScene" i Scenes-mappen.
-[ ] 4. Skapa en enkel sprite till spelaren (t.ex. en blå cirkel).
-[ ] 5. Lägg in spelarspriten i scenen och döp GameObject till "Player".
-[ ] 6. Lägg till en Rigidbody2D på Player (Body Type = Dynamic).
-[ ] 7. Lägg till en CircleCollider2D på Player.
-[ ] 8. Skapa ett nytt script: "PlayerController.cs" och lägg på Player.
-[ ] 9. Skriv kod så att spelaren kan röra sig med WASD eller piltangenterna.
-[ ] 10. Testa att spelaren kan röra sig i scenen. Skriv gärna kommentarer i koden.
-[ ] 11. Lägg till en CameraFollow-script om du vill att kameran följer spelaren.
-[ ] 12. Skapa en sprite för Stick (en brun liten pinne).
-[ ] 13. Skapa en sprite för Stone (en liten grå sten).
-[ ] 14. Skapa ett GameObject för Stick i scenen:
+[x] 2b. Sätt upp versionshantering (t.ex. Git) för projektet.
+[x] 2c. Skapa en README.md i projektroten med projektbeskrivning och status.
+[x] 3. Spara din första scen som "MainScene" i Scenes-mappen.
+[x] 4. Skapa en enkel sprite till spelaren (t.ex. en blå cirkel).
+[x] 5. Lägg in spelarspriten i scenen och döp GameObject till "Player".
+[x] 6. Lägg till en Rigidbody2D på Player (Body Type = Dynamic).
+[x] 7. Lägg till en CircleCollider2D på Player.
+[x] 8. Skapa ett nytt script: "PlayerController.cs" och lägg på Player.
+[x] 9. Skriv kod så att spelaren kan röra sig med WASD eller piltangenterna.
+[x] 10. Testa att spelaren kan röra sig i scenen. Skriv gärna kommentarer i koden.
+[x] 11. Lägg till en CameraFollow-script om du vill att kameran följer spelaren.
+[x] 12. Skapa en sprite för Stick (en brun liten pinne).
+[x] 13. Skapa en sprite för Stone (en liten grå sten).
+[x] 14. Skapa ett GameObject för Stick i scenen:
          - Lägg till SpriteRenderer med Stick-spriten.
          - Lägg till en BoxCollider2D (IsTrigger = true).
-[ ] 15. Spara Stick som en Prefab i Assets/Prefabs och ta bort från scenen.
-[ ] 16. Skapa ett GameObject för Stone i scenen:
+[x] 15. Spara Stick som en Prefab i Assets/Prefabs och ta bort från scenen.
+[x] 16. Skapa ett GameObject för Stone i scenen:
          - Lägg till SpriteRenderer med Stone-spriten.
          - Lägg till en BoxCollider2D (IsTrigger = true).
-[ ] 17. Spara Stone som en Prefab i Assets/Prefabs och ta bort från scenen.
-[ ] 18. Skapa nytt script: "PickupItem.cs" och lägg på Stick och Stone-prefab.
-[ ] 19. PickupItem-scriptet ska:
+[x] 17. Spara Stone som en Prefab i Assets/Prefabs och ta bort från scenen.
+[x] 18. Skapa nytt script: "PickupItem.cs" och lägg på Stick och Stone-prefab.
+[x] 19. PickupItem-scriptet ska:
          - Kunna plockas upp med E-tangent.
          - Lägga till föremålet i spelarens inventory.
-[ ] 20. Testa att du kan plocka upp Stick och Stone. Lägg till placeholder-ljud om möjligt.
-[ ] 21. Skapa nytt script: "InventoryManager.cs".
-[ ] 22. InventoryManager ska:
+[x] 20. Testa att du kan plocka upp Stick och Stone. Lägg till placeholder-ljud om möjligt.
+[x] 21. Skapa nytt script: "InventoryManager.cs".
+[x] 22. InventoryManager ska:
          - Ha en lista över föremål.
          - Kunna lägga till nya föremål.
-[ ] 23. Skapa ett UI för Inventory:
+[x] 23. Skapa ett UI för Inventory:
          - Canvas > Panel > Text för att visa föremålen.
          - Lägg till "InventoryUI.cs"-script för att hantera visning.
-[ ] 24. Testa att plockade föremål visas i inventoryt. Lägg till popup om inventory är fullt.
-[ ] 25. Skapa nytt script: "ItemData.cs" (ScriptableObject).
-[ ] 26. ItemData ska innehålla:
+[x] 24. Testa att plockade föremål visas i inventoryt. Lägg till popup om inventory är fullt.
+[x] 25. Skapa nytt script: "ItemData.cs" (ScriptableObject).
+[x] 26. ItemData ska innehålla:
          - Namn på föremål.
          - Ikon (sprite).
          - Beskrivning.
-[ ] 27. Skapa ScriptableObjects:
+[x] 27. Skapa ScriptableObjects:
          - StickData
          - StoneData
          - AxeData
          - BrokenAxeData
-[ ] 28. Koppla rätt sprite och namn till varje ItemData.
-[ ] 29. Skapa nytt script: "CraftingManager.cs".
-[ ] 30. CraftingManager ska:
+[x] 28. Koppla rätt sprite och namn till varje ItemData.
+[x] 29. Skapa nytt script: "CraftingManager.cs".
+[x] 30. CraftingManager ska:
          - Kontrollera om du har Stick och Stone.
          - Låta dig crafta Axe.
-[ ] 31. Lägg till en Crafting UI:
+[x] 31. Lägg till en Crafting UI:
          - Canvas > Button "Craft Axe".
-[ ] 32. Gör så att knappen kallar på CraftingManager för att crafta.
-[ ] 33. Testa att crafta Axe från Stick + Stone. Lägg till popup om crafting misslyckas.
-[ ] 34. Skapa nytt script: "EquipmentManager.cs".
-[ ] 35. EquipmentManager ska:
+[x] 32. Gör så att knappen kallar på CraftingManager för att crafta.
+[x] 33. Testa att crafta Axe från Stick + Stone. Lägg till popup om crafting misslyckas.
+[x] 34. Skapa nytt script: "EquipmentManager.cs".
+[x] 35. EquipmentManager ska:
          - Låta spelaren välja ett item och "Equip" det.
          - Visa vilken utrustning som är aktiv.
-[ ] 36. Lägg till en ikon över spelarens sprite för utrustad yxa.
-[ ] 37. Testa att utrusta Axe. Lägg till visuell feedback (ikon/ram).
+[x] 36. Lägg till en ikon över spelarens sprite för utrustad yxa.
+[x] 37. Testa att utrusta Axe. Lägg till visuell feedback (ikon/ram).
 [ ] 38. Skapa en sprite för Tree (grön cirkel + brun stam).
 [ ] 39. Skapa GameObject för Tree:
          - SpriteRenderer med Tree-sprite.

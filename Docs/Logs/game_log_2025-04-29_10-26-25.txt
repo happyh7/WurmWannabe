@@ -1,0 +1,46 @@
+=== Spelloggar 2025-04-29_10-26-25 ===
+Logger initialiserad med minimumLogLevel: Info
+[10:26:29.196] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[10:26:30.253] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[10:26:31.079] [Info] [SetItem] Försöker sätta Stone i slot
+[10:26:31.080] [Info] [SetItem] Försöker sätta Stick i slot
+[10:26:32.300] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[10:26:32.300] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[10:26:32.301] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[10:26:32.301] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[10:26:32.301] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[10:26:32.304] [Info] [SetItem] Försöker sätta Axe i slot
+[10:26:33.864] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[10:26:33.865] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[10:26:33.865] [Info] [EquipAxe] Tog bort Axe från inventory
+[10:26:33.866] [Info] [SetItem] Försöker sätta Axe i slot
+[10:26:33.866] [Info] [EquipAxe] Equippade Axe
+[10:26:33.866] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[10:26:34.704] [Info] [AxeSlot.OnPointerClick] Dubbelklick på Axe, unequippar
+[10:26:34.705] [Info] [UnequipAxe] Börjar unequippa Axe
+[10:26:34.705] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[10:26:34.705] [Info] [UnequipAxe] Rensat axeSlot och equippedAxe referens
+[10:26:34.706] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[10:26:34.706] [Info] [UnequipAxe] Lagt till Axe i inventory
+[10:26:34.706] [Info] [SetItem] Försöker sätta Axe i slot
+[10:26:35.411] [Info] [OnBeginDrag] Börjar dra Axe
+[10:26:44.884] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[10:26:44.884] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[10:26:44.884] [Info] [EquipAxe] Tog bort Axe från inventory
+[10:26:44.885] [Info] [SetItem] Försöker sätta Axe i slot
+[10:26:44.885] [Info] [EquipAxe] Equippade Axe
+[10:26:44.885] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[10:26:46.877] [Info] [AxeSlot.OnPointerClick] Dubbelklick på Axe, unequippar
+[10:26:46.878] [Info] [UnequipAxe] Börjar unequippa Axe
+[10:26:46.878] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[10:26:46.878] [Info] [UnequipAxe] Rensat axeSlot och equippedAxe referens
+[10:26:46.878] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[10:26:46.878] [Info] [UnequipAxe] Lagt till Axe i inventory
+[10:26:46.878] [Info] [SetItem] Försöker sätta Axe i slot
+[10:26:47.959] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[10:26:47.959] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[10:26:47.959] [Info] [EquipAxe] Tog bort Axe från inventory
+[10:26:47.959] [Info] [SetItem] Försöker sätta Axe i slot
+[10:26:47.960] [Info] [EquipAxe] Equippade Axe
+[10:26:47.960] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[10:26:48.983] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe

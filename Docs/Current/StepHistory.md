@@ -1,6 +1,6 @@
 # Avklarade steg - WurmWannabe
 
-*Uppdateringen gjordes: 25/04/27*
+*Senaste uppdateringen: 25/04/29*
 
 Här sparas alla steg som är avklarade, för historik och referens.
 
@@ -48,4 +48,53 @@ Här sparas alla steg som är avklarade, för historik och referens.
     - [x] Canvas > Panel > Text för att visa föremålen.
     - [x] Lägg till "InventoryUI.cs"-script för att hantera visning.
 - [x] Koppla PickupItem till InventoryManager så att föremål faktiskt läggs till i inventory.
-- [x] Testa att plockade föremål visas i inventoryt. 
+- [x] Testa att plockade föremål visas i inventoryt.
+
+## ScriptableObject-baserade items och förberedelse för crafting (25/04/28)
+
+- [x] Skapa nytt script: "ItemData.cs" (ScriptableObject) för att definiera item-typer.
+- [x] Skapa ScriptableObjects för Stick, Stone, Axe, BrokenAxe i Assets/ScriptableObjects.
+- [x] Ändra InventoryManager så att den hanterar item-typer (ItemData) istället för bara namn.
+- [x] Ändra PickupItem så att den refererar till ett ItemData-objekt och lägger till rätt item i inventory.
+- [x] Uppdatera InventoryUI så att den visar namn och antal av varje item-typ.
+- [x] Testa att plocka upp olika item-typer och att de visas korrekt i inventoryt.
+
+## Crafting-system (förberedande) (25/04/28)
+
+- [x] Skapa nytt script: "CraftingManager.cs".
+- [x] CraftingManager ska kunna kontrollera om spelaren har rätt material (Stick + Stone).
+- [x] Skapa ett enkelt UI (t.ex. knapp) för att crafta Axe.
+- [x] Gör så att knappen kallar på CraftingManager för att crafta Axe.
+- [x] Testa att crafta Axe från Stick + Stone och att inventory uppdateras korrekt.
+
+## Grid-baserat inventory med UI och equipment (25/04/29)
+
+- [x] Skapa ett nytt InventoryUI-system med grid-layout (t.ex. med Unity UI GridLayoutGroup).
+- [x] Skapa ett UI-fönster som öppnas/stängs med I-tangenten.
+- [x] Visa ikoner för Stick, Stone, Axe och Broken Axe i inventoryt (använd ScriptableObject-ikoner).
+- [x] När man klickar på Axe i inventoryt ska det visas alternativ: Equip eller Unequip.
+- [x] Implementera Equip/Unequip-funktionalitet för Axe.
+- [x] Visa tydligt i UI om Axe är utrustad eller inte.
+- [x] Testa att equip/unequip Axe via inventoryt.
+- [x] Lägg till de nya ikonerna för Stick, Stone, Axe och Broken Axe i projektet och koppla dem till respektive ItemData.
+
+## Karaktärsbild och equipment slot (25/04/29)
+
+- [x] Lägg till en karaktärsbild till höger i inventoryt:
+    - Skapa eller importera en bild på en karaktär (eller använd en placeholder).
+    - Lägg till bilden i Canvas, placerad till höger om inventory-griden.
+    - Justera storlek och position så det ser snyggt ut.
+
+- [x] Skapa en equipment slot (t.ex. för Axe) på karaktärsbilden:
+    - Skapa en ny slot-prefab eller använd samma som inventory-slot, men placera den ovanpå/vid handen på karaktärsbilden.
+    - Lägg till en ram eller highlight så det syns att det är en equipment slot.
+
+- [x] Implementera logik för att flytta yxan mellan inventory och equipment slot:
+    - När du klickar på Axe i inventoryt, visa alternativet "Equip".
+    - När du väljer "Equip", flyttas Axe till equipment sloten på karaktären och tas bort från inventoryt.
+    - När du klickar på Axe i equipment sloten, visa alternativet "Unequip".
+    - När du väljer "Unequip", flyttas Axe tillbaka till inventoryt (till första lediga slot).
+    - Equipment sloten ska bara kunna innehålla Axe (eller vara tom).
+    - UI:t ska tydligt visa om Axe är equippad eller inte (t.ex. highlight eller ikon).
+
+- [x] Testa att equip/unequip Axe och att det syns korrekt i UI:t. 
