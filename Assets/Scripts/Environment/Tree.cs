@@ -46,6 +46,11 @@ public class Tree : MonoBehaviour
     {
         health = Mathf.Max(0, health - amount);
 
+        if (health > 0)
+        {
+            StartCoroutine(ShakeTree());
+        }
+
         if (health == 0)
         {
             // Spawn 2 wood objects at the tree's position

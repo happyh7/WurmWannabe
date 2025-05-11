@@ -1,0 +1,22 @@
+=== Spelloggar 2025-05-11_11-35-25 ===
+Logger initialiserad med minimumLogLevel: Info
+[11:35:25.371] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 1, innehöll: null
+[11:35:25.374] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 2, innehöll: null
+[11:35:25.375] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 3, innehöll: null
+[11:35:25.375] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 4, innehöll: null
+[11:35:25.375] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 5, innehöll: null
+[11:35:25.376] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 6, innehöll: null
+[11:35:25.381] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 7, innehöll: null
+[11:35:25.381] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 8, innehöll: null
+[11:35:25.381] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 9, innehöll: null
+[11:35:25.382] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 10, innehöll: null
+[11:35:25.382] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 11, innehöll: null
+[11:35:25.382] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 12, innehöll: null
+[11:35:25.382] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 13, innehöll: null
+[11:35:25.383] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 14, innehöll: null
+[11:35:25.383] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 15, innehöll: null
+[11:35:25.383] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 16, innehöll: null
+[11:35:25.384] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 17, innehöll: null
+[11:35:25.384] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 18, innehöll: null
+[11:35:25.384] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 19, innehöll: null
+[11:35:25.385] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 20, innehöll: null

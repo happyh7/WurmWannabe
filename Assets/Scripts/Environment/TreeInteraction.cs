@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class TreeInteraction : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class TreeInteraction : MonoBehaviour
     [SerializeField] private GameObject treeHPBarPrefab;
     [SerializeField] private Canvas worldSpaceCanvas;
     [SerializeField] private GameObject chopCastBarPrefab;
+    [SerializeField] private TMP_Text notificationText;
+    [SerializeField] private GameObject notificationPanel;
+    private float notificationHideTime = 0f;
 
     private Tree currentTree;
     private Tree lastHighlightedTree;
@@ -21,19 +25,16 @@ public class TreeInteraction : MonoBehaviour
 
     private void Update()
     {
-        // Kolla om spelaren har en yxa utrustad
-        if (!equipManager.HasAxeEquipped())
+        // Visa/göm notification-panel om det är aktivt
+        if (notificationPanel != null && notificationPanel.activeSelf && Time.time > notificationHideTime)
         {
-            RemoveHPBarAndHighlight();
-            currentTree = null;
-            return;
+            notificationPanel.SetActive(false);
         }
 
-        // Hitta närmaste träd
+        // Hitta närmaste träd (görs alltid)
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionDistance);
         float closestDistance = float.MaxValue;
         Tree closestTree = null;
-
         foreach (Collider2D collider in colliders)
         {
             Tree tree = collider.GetComponent<Tree>();
@@ -46,6 +47,19 @@ public class TreeInteraction : MonoBehaviour
                     closestTree = tree;
                 }
             }
+        }
+
+        // Kolla om spelaren har en yxa utrustad
+        if (!equipManager.HasAxeEquipped())
+        {
+            // Om spelaren försöker hugga utan yxa
+            if (Input.GetKeyDown(interactKey) && closestTree != null)
+            {
+                ShowNotification("Du behöver en yxa för att hugga!");
+            }
+            RemoveHPBarAndHighlight();
+            currentTree = null;
+            return;
         }
 
         // Hantera highlight med Quick Outline
@@ -248,5 +262,16 @@ public class TreeInteraction : MonoBehaviour
         // Rita en cirkel som visar interaktionsavståndet
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionDistance);
+    }
+
+    private void ShowNotification(string message, float duration = 2f)
+    {
+        if (notificationText != null && notificationPanel != null)
+        {
+            notificationText.text = message;
+            notificationText.enabled = true;
+            notificationPanel.SetActive(true);
+            notificationHideTime = Time.time + duration;
+        }
     }
 } 
