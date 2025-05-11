@@ -1,35 +1,18 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class AxeSlot : InventorySlot
 {
+    public static ItemData DraggedAxeItem = null;
+
     public override void OnBeginDrag(PointerEventData eventData)
     {
         if (currentItem == null) return;
-
-        Logger.Instance.Log("[AxeSlot.OnBeginDrag] Börjar dra Axe", Logger.LogLevel.Info);
-        
-        // Skapa en ghost image
-        ghostImage = new GameObject("Ghost");
-        ghostImage.transform.SetParent(transform.root);
-        ghostImage.transform.position = transform.position;
-        
-        // Kopiera ikonen och sätt storlek
-        Image ghostSprite = ghostImage.AddComponent<Image>();
-        RectTransform ghostRect = ghostImage.GetComponent<RectTransform>();
-        ghostRect.sizeDelta = GetComponent<RectTransform>().sizeDelta;
-        
-        ghostSprite.sprite = icon.sprite;
-        ghostSprite.raycastTarget = false;
-        ghostSprite.color = new Color(1, 1, 1, 0.5f); // Halvgenomskinlig
-        
-        // Dölj original ikonen och blockera raycast
-        icon.enabled = false;
-        canvasGroup.blocksRaycasts = false;
-
-        // Sätt denna slot som den som dras
-        eventData.pointerDrag = gameObject;
+        Logger.Instance.Log($"[AxeSlot.OnBeginDrag] Börjar dra {currentItem.itemName}", Logger.LogLevel.Info);
+        DraggedAxeItem = currentItem;
+        base.OnBeginDrag(eventData);
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -40,24 +23,10 @@ public class AxeSlot : InventorySlot
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        Logger.Instance.Log("[AxeSlot.OnEndDrag] Släpper Axe", Logger.LogLevel.Info);
-        
+        DraggedAxeItem = null;
         // Visa original ikonen igen och återaktivera raycast
         icon.enabled = true;
         canvasGroup.blocksRaycasts = true;
-        
-        // Hitta den slot som vi släppte på
-        GameObject dropObject = eventData.pointerCurrentRaycast.gameObject;
-        if (dropObject != null)
-        {
-            InventorySlot targetSlot = dropObject.GetComponent<InventorySlot>();
-            if (targetSlot != null && !(targetSlot is AxeSlot))
-            {
-                Logger.Instance.Log("[AxeSlot.OnEndDrag] Hittade target slot, unequippar Axe", Logger.LogLevel.Info);
-                // Unequippa yxan till den hittade slotten
-                EquipManager.Instance.UnequipAxeToSlot(targetSlot);
-            }
-        }
         
         // Ta bort ghost
         if (ghostImage != null)
@@ -77,15 +46,19 @@ public class AxeSlot : InventorySlot
         // Om vi försöker droppa på samma slot, avbryt
         if (droppedSlot == this) return;
 
-        // Om det är en AxeSlot, avbryt
-        if (droppedSlot is AxeSlot) return;
-
         // Om det är en InventorySlot med en yxa
         if (droppedSlot is InventorySlot && droppedSlot.GetItem()?.itemName.Contains("Axe") == true)
         {
             Logger.Instance.Log("[AxeSlot.OnDrop] Droppar Axe på AxeSlot", Logger.LogLevel.Info);
+            
+            // Spara referensen till yxan innan vi equipar
+            ItemData axeToEquip = droppedSlot.GetItem();
+            
+            // Rensa den ursprungliga slotten först
+            droppedSlot.ClearSlot();
+            
             // Equippa yxan
-            EquipManager.Instance.EquipAxe(droppedSlot.GetItem());
+            EquipManager.Instance.EquipAxe(axeToEquip);
             return;
         }
     }
@@ -104,6 +77,53 @@ public class AxeSlot : InventorySlot
             }
             
             lastClickTime = Time.time;
+        }
+    }
+
+    public override void SetItem(ItemData item)
+    {
+        if (item == null)
+        {
+            Logger.Instance.Log("[AxeSlot.SetItem] Försöker sätta null item i AxeSlot", Logger.LogLevel.Error);
+            return;
+        }
+
+        if (!item.itemName.Contains("Axe"))
+        {
+            Logger.Instance.Log($"[AxeSlot.SetItem] Försöker sätta icke-yxa ({item.itemName}) i AxeSlot", Logger.LogLevel.Warning);
+            return;
+        }
+
+        Logger.Instance.Log($"[AxeSlot.SetItem] Sätter {item.itemName} i AxeSlot", Logger.LogLevel.Info);
+        base.SetItem(item);
+        if (item != null && item.itemName.Contains("Axe"))
+        {
+            durabilityBar.gameObject.SetActive(true);
+            durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurability(), EquipManager.Instance.GetAxeMaxDurability());
+        }
+        else if (durabilityBar != null)
+        {
+            durabilityBar.gameObject.SetActive(false);
+        }
+    }
+
+    public override void ClearSlot()
+    {
+        if (currentItem == null) return;
+        Logger.Instance.Log($"[AxeSlot.ClearSlot] Rensar AxeSlot som innehöll: {currentItem.itemName}", Logger.LogLevel.Info);
+        base.ClearSlot();
+    }
+
+    public new void UpdateDurabilityBar()
+    {
+        if (durabilityBar != null && currentItem != null)
+        {
+            durabilityBar.gameObject.SetActive(true);
+            durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurability(), EquipManager.Instance.GetAxeMaxDurability());
+        }
+        else if (durabilityBar != null)
+        {
+            durabilityBar.gameObject.SetActive(false);
         }
     }
 } 

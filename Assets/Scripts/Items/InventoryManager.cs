@@ -22,12 +22,13 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(ItemData item)
     {
+        Logger.Instance.Log($"[InventoryManager.AddItem] Försöker lägga till item: {(item != null ? item.itemName : "null")}", Logger.LogLevel.Info);
         if (item == null) return;
 
         Logger.Instance.Log($"[AddItem] Försöker lägga till {item.itemName}. isStackable: {item.isStackable}", Logger.LogLevel.Info);
 
-        // För icke-stackbara items, skapa en ny instans
-        if (!item.isStackable)
+        // För icke-stackbara items som inte är yxor, skapa en ny instans
+        if (!item.isStackable && !item.itemName.Contains("Axe"))
         {
             // Skapa en ny instans av ItemData för icke-stackbara items
             ItemData newInstance = ScriptableObject.Instantiate(item);
@@ -37,7 +38,7 @@ public class InventoryManager : MonoBehaviour
         }
         else if (!items.ContainsKey(item))
         {
-            // För stackbara items, använd original-referensen
+            // För stackbara items och yxor, använd original-referensen
             items[item] = 1;
             Logger.Instance.Log($"[AddItem] Lade till {item.itemName} i inventory. Totalt: 1", Logger.LogLevel.Info);
         }
@@ -66,6 +67,9 @@ public class InventoryManager : MonoBehaviour
             bool itemFound = false;
             foreach (var slot in inventorySlots)
             {
+                // Skippa slots som nyligen har fått ett item via drag & drop
+                if (slot.isLastUnequipTarget) continue;
+                
                 if (slot.GetItem() == kvp.Key)
                 {
                     itemFound = true;
@@ -98,6 +102,9 @@ public class InventoryManager : MonoBehaviour
             {
                 foreach (var slot in inventorySlots)
                 {
+                    // Skippa slots som nyligen har fått ett item via drag & drop
+                    if (slot.isLastUnequipTarget) continue;
+                    
                     if (slot.GetItem() == null)
                     {
                         slot.SetItem(item);
@@ -111,6 +118,9 @@ public class InventoryManager : MonoBehaviour
         // Ta bort items som inte längre finns i inventory
         foreach (var slot in inventorySlots)
         {
+            // Skippa slots som nyligen har fått ett item via drag & drop
+            if (slot.isLastUnequipTarget) continue;
+            
             var currentItem = slot.GetItem();
             if (currentItem != null && !items.ContainsKey(currentItem))
             {
@@ -126,6 +136,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool RemoveItem(ItemData item)
     {
+        Logger.Instance.Log($"[InventoryManager.RemoveItem] Försöker ta bort item: {(item != null ? item.itemName : "null")}", Logger.LogLevel.Info);
         if (items.ContainsKey(item))
         {
             items[item]--;
@@ -149,7 +160,14 @@ public class InventoryManager : MonoBehaviour
 
     public void UpdateItemSlot(ItemData item, InventorySlot slot)
     {
-        // Denna metod används för att hålla koll på var items finns i UI:t
-        // Om det behövs kan du lägga till mer logik här
+        // Om itemet är en yxa, ta bort det från inventory och lägg till det i den nya sloten
+        if (item != null && item.itemName.Contains("Axe"))
+        {
+            if (items.ContainsKey(item))
+            {
+                items.Remove(item);
+                Logger.Instance.Log($"[UpdateItemSlot] Tog bort {item.itemName} från inventory", Logger.LogLevel.Info);
+            }
+        }
     }
 } 

@@ -3,12 +3,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+// TEST: Cursor kan nu ändra denna fil?
 public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, IDropHandler
 {
     public Image icon;  // Reference till Image-komponenten för item icon
-    public TMP_Text quantityText;  // Text för att visa antal items
+    public TMP_Text quantityText;  // Text för att visa antal items och deras dubbelhakor.
     // Ram/Frame hanteras av separat Image-objekt i prefab
     public bool isLastUnequipTarget = false; // Ny flagga för att markera unequip target
+    [SerializeField] protected AxeDurabilityBar durabilityBar;
 
     protected ItemData currentItem;
     protected int quantity;
@@ -42,6 +44,13 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public virtual void SetItem(ItemData item)
     {
+        Logger.Instance.Log($"[InventorySlot.SetItem] Försöker sätta item: {(item != null ? item.itemName : "null")} i slot: {this.name}", Logger.LogLevel.Info);
+        if (item == null)
+        {
+            Logger.Instance.Log("[SetItem] Försöker sätta null item i slot", Logger.LogLevel.Error);
+            return;
+        }
+
         if (item == currentItem)
         {
             Logger.Instance.Log($"[SetItem] Försöker sätta samma item ({item.itemName}) i slot som redan finns där", Logger.LogLevel.Warning);
@@ -50,15 +59,15 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         Logger.Instance.Log($"[SetItem] Sätter {item.itemName} i slot", Logger.LogLevel.Info);
         currentItem = item;
-
+        
         // Om det är ett non-stackable item, sätt quantity till 1
         if (!item.isStackable)
         {
             quantity = 1;
             Logger.Instance.Log($"[SetItem] {item.itemName} är non-stackable, sätter quantity till 1", Logger.LogLevel.Info);
-        }
-        else
-        {
+                    }
+                    else
+                    {
             quantity = InventoryManager.Instance.GetItemQuantity(item);
             Logger.Instance.Log($"[SetItem] {item.itemName} är stackable, hämtar quantity från inventory: {quantity}", Logger.LogLevel.Info);
         }
@@ -68,6 +77,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public virtual void ClearSlot()
     {
+        Logger.Instance.Log($"[InventorySlot.ClearSlot] Försöker rensa slot: {this.name}, innehöll: {(currentItem != null ? currentItem.itemName : "null")}", Logger.LogLevel.Info);
         if (currentItem == null) return; // Om sloten redan är tom, hoppa över
 
         Logger.Instance.Log($"[ClearSlot] Rensar slot som innehöll: {(currentItem != null ? currentItem.itemName : "inget item")}", Logger.LogLevel.Info);
@@ -82,6 +92,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             quantityText.text = "";
             quantityText.enabled = false;
         }
+        UpdateUI(); // Se till att durability-baren döljs när sloten töms
     }
 
     public virtual ItemData GetItem()
@@ -112,7 +123,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         
         // Dölj original ikonen och blockera raycast
         icon.enabled = false;
-        canvasGroup.blocksRaycasts = false;
+            canvasGroup.blocksRaycasts = false;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -137,52 +148,75 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public virtual void OnDrop(PointerEventData eventData)
     {
-        InventorySlot droppedSlot = eventData.pointerDrag.GetComponent<InventorySlot>();
-        if (droppedSlot == null) return;
+        Logger.Instance.Log($"[InventorySlot.OnDrop] eventData.pointerDrag: {(eventData.pointerDrag != null ? eventData.pointerDrag.name : "null")}, this: {this.name}, currentItem: {(currentItem != null ? currentItem.itemName : "null")}", Logger.LogLevel.Info);
+        if (eventData.pointerDrag == null) return;
 
-        // Om vi försöker droppa på samma slot, avbryt
-        if (droppedSlot == this) return;
-
-        // Om det är en AxeSlot, hantera unequip
-        if (droppedSlot is AxeSlot axeSlot)
+        InventorySlot fromSlot = eventData.pointerDrag.GetComponent<InventorySlot>();
+        if (fromSlot != null)
         {
-            Logger.Instance.Log("[OnDrop] Droppar från AxeSlot till InventorySlot", Logger.LogLevel.Info);
-            EquipManager.Instance.UnequipAxeToSlot(this);
+            // Om vi droppar från AxeSlot
+            if (fromSlot is AxeSlot)
+            {
+                Logger.Instance.Log($"[InventorySlot.OnDrop] Droppar från AxeSlot: {fromSlot.name}, item: {(AxeSlot.DraggedAxeItem != null ? AxeSlot.DraggedAxeItem.itemName : "null")}", Logger.LogLevel.Info);
+
+                ItemData savedAxe = AxeSlot.DraggedAxeItem;
+                if (savedAxe == null)
+                {
+                    Logger.Instance.Log("[OnDrop] Ingen yxa att flytta från AxeSlot (DraggedAxeItem är null)", Logger.LogLevel.Warning);
+                    return;
+                }
+
+                // Markera denna slot som target för unequip
+                this.isLastUnequipTarget = true;
+
+                // Ta bort yxan från handen/AxeSlot (lägger automatiskt till i inventory och placerar i rätt slot)
+                EquipManager.Instance.UnequipAxe();
+
+                // Returnera direkt – låt UpdateUI hantera placeringen!
+                return;
+            }
+
+            Logger.Instance.Log($"[InventorySlot.OnDrop] Droppar från InventorySlot: {fromSlot.name}, item: {(fromSlot.GetItem() != null ? fromSlot.GetItem().itemName : "null")}", Logger.LogLevel.Info);
+            // Om vi droppar på samma slot, gör ingenting
+            if (fromSlot == this) return;
+
+            // Om vi droppar på en tom slot
+            if (currentItem == null)
+            {
+                // Flytta item från fromSlot till denna slot
+                ItemData itemToMove = fromSlot.GetItem();
+                if (itemToMove != null)
+                {
+                    SetItem(itemToMove);
+                    fromSlot.ClearSlot();
+                    Logger.Instance.Log($"[OnDrop] Flyttade {currentItem.itemName} från slot {fromSlot.name} till {name}", Logger.LogLevel.Info);
+                }
+            }
+            // Om vi droppar på en slot med samma item och item är stackable
+            else if (fromSlot.GetItem() != null && currentItem.itemName == fromSlot.GetItem().itemName && currentItem.isStackable)
+            {
+                // Lägg till quantity från fromSlot till denna slot
+                quantity += fromSlot.quantity;
+                fromSlot.ClearSlot();
+                UpdateUI();
+                Logger.Instance.Log($"[OnDrop] Stackade {currentItem.itemName} från slot {fromSlot.name} till {name}", Logger.LogLevel.Info);
+            }
+            // Om vi droppar på en slot med ett annat item
+            else if (fromSlot.GetItem() != null)
+            {
+                // Byta plats på items
+                ItemData tempItem = currentItem;
+                ItemData fromItem = fromSlot.GetItem();
+                SetItem(fromItem);
+                fromSlot.SetItem(tempItem);
+
+                // Tvinga båda slots att uppdatera sitt UI (extra säkerhet)
+                UpdateUI();
+                fromSlot.UpdateUI();
+
+                Logger.Instance.Log($"[OnDrop] Bytte plats på {currentItem.itemName} och {tempItem.itemName}", Logger.LogLevel.Info);
+            }
             return;
-        }
-
-        // Om det är en vanlig InventorySlot
-        if (droppedSlot is InventorySlot)
-        {
-            Logger.Instance.Log("[OnDrop] Droppar från InventorySlot till InventorySlot", Logger.LogLevel.Info);
-            ItemData droppedItem = droppedSlot.GetItem();
-            ItemData currentItem = GetItem();
-
-            // Om båda slots har samma non-stackable item, avbryt
-            if (droppedItem != null && currentItem != null && 
-                !droppedItem.isStackable && droppedItem == currentItem)
-            {
-                Logger.Instance.Log("[OnDrop] Försöker droppa samma non-stackable item, avbryter", Logger.LogLevel.Warning);
-                return;
-            }
-
-            // Om det droppade itemet är non-stackable och target slot har samma item type, avbryt
-            if (droppedItem != null && currentItem != null && 
-                !droppedItem.isStackable && droppedItem.itemName == currentItem.itemName)
-            {
-                Logger.Instance.Log("[OnDrop] Kan inte stacka non-stackable items", Logger.LogLevel.Warning);
-                return;
-            }
-
-            // Rensa båda slots först
-            droppedSlot.ClearSlot();
-            ClearSlot();
-
-            // Sätt items i nya slots
-            if (droppedItem != null)
-                SetItem(droppedItem);
-            if (currentItem != null)
-                droppedSlot.SetItem(currentItem);
         }
     }
 
@@ -207,7 +241,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
-    protected virtual void UpdateUI()
+    public virtual void UpdateUI()
     {
         if (currentItem != null)
         {
@@ -234,6 +268,18 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     Logger.Instance.Log("[UpdateUI] Döljer quantity för non-stackable item eller quantity = 1", Logger.LogLevel.Info);
                 }
             }
+
+            // Durability bar
+            if (currentItem.itemName.Contains("Axe") && durabilityBar != null)
+            {
+                durabilityBar.gameObject.SetActive(true);
+                int durability = EquipManager.Instance.GetAxeDurabilityFor(currentItem);
+                durabilityBar.SetDurability(durability, EquipManager.Instance.GetAxeMaxDurability());
+            }
+            else if (durabilityBar != null)
+            {
+                durabilityBar.gameObject.SetActive(false);
+            }
         }
         else
         {
@@ -241,13 +287,25 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             if (icon != null)
             {
                 icon.sprite = null;
-                icon.enabled = true;
+                icon.enabled = false;
             }
             if (quantityText != null)
             {
                 quantityText.text = "";
                 quantityText.enabled = false;
             }
+            if (durabilityBar != null)
+            {
+                durabilityBar.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void UpdateDurabilityBar()
+    {
+        if (durabilityBar != null && currentItem != null && currentItem.itemName.Contains("Axe"))
+        {
+            durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurability(), EquipManager.Instance.GetAxeMaxDurability());
         }
     }
 } 

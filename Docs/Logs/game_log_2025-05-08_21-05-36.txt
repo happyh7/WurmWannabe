@@ -1,0 +1,62 @@
+=== Spelloggar 2025-05-08_21-05-36 ===
+Logger initialiserad med minimumLogLevel: Info
+[21:05:44.332] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[21:05:44.335] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[21:05:44.338] [Info] [SetItem] Sätter Stick i slot
+[21:05:44.338] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 1
+[21:05:44.339] [Info] [UpdateUI] Uppdaterar UI för Stick
+[21:05:44.339] [Info] [UpdateUI] Placerade Stick i första lediga slot
+[21:05:45.673] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[21:05:45.674] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[21:05:45.674] [Info] [SetItem] Sätter Stone i slot
+[21:05:45.677] [Info] [SetItem] Stone är stackable, hämtar quantity från inventory: 1
+[21:05:45.677] [Info] [UpdateUI] Uppdaterar UI för Stone
+[21:05:45.677] [Info] [UpdateUI] Placerade Stone i första lediga slot
+[21:05:46.938] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[21:05:46.938] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[21:05:46.938] [Info] [CraftAxe] Laddade yxa. isStackable: False
+[21:05:46.938] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[21:05:46.939] [Info] [AddItem] Lade till ny instans av Axe i inventory
+[21:05:46.939] [Info] [SetItem] Sätter Axe i slot
+[21:05:46.939] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[21:05:46.939] [Info] [UpdateUI] Uppdaterar UI för Axe
+[21:05:46.940] [Info] [UpdateUI] Placerade Axe i första lediga slot
+[21:05:46.940] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[21:05:46.941] [Info] [UpdateUI] Rensar UI då inget item finns
+[21:05:46.941] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[21:05:46.941] [Info] [UpdateUI] Rensar UI då inget item finns
+[21:05:47.730] [Info] [OnBeginDrag] Börjar dra Axe
+[21:05:48.210] [Info] [AxeSlot.OnDrop] Droppar Axe på AxeSlot
+[21:05:48.211] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[21:05:48.211] [Info] [UpdateUI] Rensar UI då inget item finns
+[21:05:48.212] [Info] [SetItem] Sätter Axe i slot
+[21:05:48.212] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[21:05:48.212] [Info] [UpdateUI] Uppdaterar UI för Axe
+[21:05:48.213] [Warning] [EquipAxe] axeIcon är null - använder yxans egen ikon
+[21:05:48.213] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[21:05:48.213] [Info] [EquipAxe] Tog bort Axe från inventory
+[21:05:48.214] [Info] [EquipAxe] Equippade Axe
+[21:05:48.641] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe
+[21:05:50.402] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe
+[21:05:53.170] [Info] [AxeSlot.OnPointerClick] Dubbelklick på Axe, unequippar
+[21:05:53.171] [Info] [UnequipAxe] Börjar unequippa Axe
+[21:05:53.171] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[21:05:53.171] [Info] [UpdateUI] Rensar UI då inget item finns
+[21:05:53.171] [Info] [UnequipAxe] Rensat axeSlot och equippedAxe referens
+[21:05:53.171] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[21:05:53.172] [Info] [AddItem] Lade till ny instans av Axe i inventory
+[21:05:53.172] [Info] [SetItem] Sätter Axe i slot
+[21:05:53.172] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[21:05:53.172] [Info] [UpdateUI] Uppdaterar UI för Axe
+[21:05:53.173] [Info] [UpdateUI] Placerade Axe i första lediga slot
+[21:05:53.173] [Info] [UnequipAxe] Lagt till Axe i inventory
+[21:05:53.970] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[21:05:53.970] [Info] [SetItem] Sätter Axe i slot
+[21:05:53.971] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[21:05:53.971] [Info] [UpdateUI] Uppdaterar UI för Axe
+[21:05:53.971] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[21:05:53.971] [Info] [EquipAxe] Tog bort Axe från inventory
+[21:05:53.971] [Info] [EquipAxe] Equippade Axe
+[21:05:53.972] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[21:05:53.972] [Info] [UpdateUI] Rensar UI då inget item finns
+[21:05:55.514] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe

@@ -1,2 +1,0 @@
-=== Spelloggar 2025-04-29_16-39-59 ===
-Logger initialiserad med minimumLogLevel: Info

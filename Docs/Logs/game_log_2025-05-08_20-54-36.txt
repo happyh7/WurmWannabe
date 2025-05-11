@@ -1,0 +1,74 @@
+=== Spelloggar 2025-05-08_20-54-36 ===
+Logger initialiserad med minimumLogLevel: Info
+[20:54:39.576] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[20:54:39.578] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[20:54:39.580] [Info] [SetItem] Sätter Stick i slot
+[20:54:39.581] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 1
+[20:54:39.581] [Info] [UpdateUI] Uppdaterar UI för Stick
+[20:54:39.582] [Info] [UpdateUI] Placerade Stick i första lediga slot
+[20:54:40.247] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[20:54:40.248] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[20:54:40.248] [Info] [SetItem] Sätter Stone i slot
+[20:54:40.251] [Info] [SetItem] Stone är stackable, hämtar quantity från inventory: 1
+[20:54:40.251] [Info] [UpdateUI] Uppdaterar UI för Stone
+[20:54:40.251] [Info] [UpdateUI] Placerade Stone i första lediga slot
+[20:54:42.334] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[20:54:42.334] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[20:54:42.334] [Info] [CraftAxe] Laddade yxa. isStackable: False
+[20:54:42.335] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[20:54:42.335] [Info] [AddItem] Lade till ny instans av Axe i inventory
+[20:54:42.335] [Info] [SetItem] Sätter Axe i slot
+[20:54:42.335] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[20:54:42.336] [Info] [UpdateUI] Uppdaterar UI för Axe
+[20:54:42.336] [Info] [UpdateUI] Placerade Axe i första lediga slot
+[20:54:42.336] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[20:54:42.337] [Info] [UpdateUI] Rensar UI då inget item finns
+[20:54:42.337] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[20:54:42.337] [Info] [UpdateUI] Rensar UI då inget item finns
+[20:54:43.712] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[20:54:43.713] [Info] [SetItem] Sätter Axe i slot
+[20:54:43.713] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[20:54:43.714] [Info] [UpdateUI] Uppdaterar UI för Axe
+[20:54:43.714] [Warning] [EquipAxe] axeIcon är null - använder yxans egen ikon
+[20:54:43.714] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[20:54:43.714] [Info] [EquipAxe] Tog bort Axe från inventory
+[20:54:43.715] [Info] [EquipAxe] Equippade Axe
+[20:54:43.716] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[20:54:43.716] [Info] [UpdateUI] Rensar UI då inget item finns
+[20:54:44.918] [Info] [AxeSlot.OnPointerClick] Dubbelklick på Axe, unequippar
+[20:54:44.919] [Info] [UnequipAxe] Börjar unequippa Axe
+[20:54:44.919] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[20:54:44.919] [Info] [UpdateUI] Rensar UI då inget item finns
+[20:54:44.920] [Info] [UnequipAxe] Rensat axeSlot och equippedAxe referens
+[20:54:44.920] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[20:54:44.920] [Info] [AddItem] Lade till ny instans av Axe i inventory
+[20:54:44.921] [Info] [SetItem] Sätter Axe i slot
+[20:54:44.921] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[20:54:44.921] [Info] [UpdateUI] Uppdaterar UI för Axe
+[20:54:44.921] [Info] [UpdateUI] Placerade Axe i första lediga slot
+[20:54:44.921] [Info] [UnequipAxe] Lagt till Axe i inventory
+[20:54:46.084] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[20:54:46.085] [Info] [SetItem] Sätter Axe i slot
+[20:54:46.085] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[20:54:46.085] [Info] [UpdateUI] Uppdaterar UI för Axe
+[20:54:46.085] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[20:54:46.085] [Info] [EquipAxe] Tog bort Axe från inventory
+[20:54:46.086] [Info] [EquipAxe] Equippade Axe
+[20:54:46.086] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[20:54:46.086] [Info] [UpdateUI] Rensar UI då inget item finns
+[20:54:47.016] [Info] [AxeSlot.OnBeginDrag] Börjar dra Axe
+[20:54:47.545] [Info] [InventorySlot.OnDrop] Droppar från AxeSlot
+[20:54:47.546] [Info] [UnequipAxeWithoutAddingToInventory] Unequippar Axe
+[20:54:47.546] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[20:54:47.546] [Info] [UpdateUI] Rensar UI då inget item finns
+[20:54:47.546] [Info] [UnequipAxeWithoutAddingToInventory] Rensat axeSlot och equippedAxe referens
+[20:54:47.546] [Info] [SetItem] Sätter Axe i slot
+[20:54:47.547] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[20:54:47.547] [Info] [UpdateUI] Uppdaterar UI för Axe
+[20:54:48.296] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[20:54:48.297] [Info] [SetItem] Sätter Axe i slot
+[20:54:48.297] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[20:54:48.297] [Info] [UpdateUI] Uppdaterar UI för Axe
+[20:54:48.298] [Warning] [RemoveItem] Kunde inte ta bort Axe från inventory - finns inte
+[20:54:48.298] [Warning] [EquipAxe] Kunde inte ta bort Axe från inventory - kanske redan equipad
+[20:54:48.298] [Info] [EquipAxe] Equippade Axe

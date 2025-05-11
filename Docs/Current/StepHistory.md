@@ -1,6 +1,6 @@
 # Avklarade steg - WurmWannabe
 
-*Senaste uppdateringen: 25/04/29*
+*Senaste uppdateringen: 25/05/06*
 
 Här sparas alla steg som är avklarade, för historik och referens.
 
@@ -97,4 +97,38 @@ Här sparas alla steg som är avklarade, för historik och referens.
     - Equipment sloten ska bara kunna innehålla Axe (eller vara tom).
     - UI:t ska tydligt visa om Axe är equippad eller inte (t.ex. highlight eller ikon).
 
-- [x] Testa att equip/unequip Axe och att det syns korrekt i UI:t. 
+- [x] Testa att equip/unequip Axe och att det syns korrekt i UI:t.
+
+## Träd och trädfällning (25/05/06)
+
+- [x] Skapa en ny sprite för träd:
+    - Skapa en grön cirkel för trädkronan
+    - Lägg till en brun rektangel för stammen
+    - Spara spriten i Assets/Sprites/Environment
+
+- [x] Skapa ett GameObject för träd:
+    - Skapa ett nytt tomt GameObject och döp det till "Tree"
+    - Lägg till en SpriteRenderer och sätt träd-spriten
+    - Lägg till en BoxCollider2D som passar trädets form
+    - Justera storleken så trädet ser bra ut i förhållande till spelaren
+
+- [x] Spara träd-prefaben:
+    - Dra GameObject:et till Assets/Prefabs/Environment
+    - Ta bort trädet från scenen
+    - Placera ut några träd i scenen för testning
+
+- [x] Skapa TreeHealth.cs script:
+    - Skapa en ny C#-script i Assets/Scripts/Environment
+    - Lägg till variabler för trädets HP och max HP
+    - Implementera metod för att ta skada (TakeDamage)
+    - Lägg till en trigger-collider för att detektera när spelaren är nära
+
+- [x] Koppla ihop med EquipManager:
+    - Uppdatera TreeHealth för att kolla om spelaren har en yxa utrustad
+    - Lägg till en metod för att kontrollera avstånd till spelaren
+    - Implementera logik för att ta skada när spelaren trycker E med yxa
+
+- [x] Implementera trädfällning:
+    - När HP når 0, spela upp en animation
+    - Spawna några Stick-items när trädet fälls
+    - Ta bort trädet från scenen 

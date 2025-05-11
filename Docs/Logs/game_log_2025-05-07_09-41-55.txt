@@ -1,0 +1,31 @@
+=== Spelloggar 2025-05-07_09-41-55 ===
+Logger initialiserad med minimumLogLevel: Info
+[09:41:59.505] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[09:41:59.507] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[09:42:00.386] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[09:42:00.386] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[09:42:01.607] [Info] [SetItem] Sätter Stick i slot
+[09:42:01.607] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 1
+[09:42:01.608] [Info] [UpdateUI] Uppdaterar UI för Stick
+[09:42:01.608] [Info] [SetItem] Sätter Stone i slot
+[09:42:01.608] [Info] [SetItem] Stone är stackable, hämtar quantity från inventory: 1
+[09:42:01.611] [Info] [UpdateUI] Uppdaterar UI för Stone
+[09:42:03.187] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[09:42:03.188] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[09:42:03.188] [Info] [CraftAxe] Laddade yxa. isStackable: False
+[09:42:03.188] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[09:42:03.189] [Info] [AddItem] Lade till ny instans av Axe i inventory
+[09:42:03.190] [Info] [SetItem] Sätter Axe i slot
+[09:42:03.190] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[09:42:03.190] [Info] [UpdateUI] Uppdaterar UI för Axe
+[09:42:03.190] [Info] [UpdateUI] Placerade Axe i första lediga slot
+[09:42:03.190] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[09:42:03.191] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[09:42:04.178] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[09:42:04.179] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[09:42:04.179] [Info] [EquipAxe] Tog bort Axe från inventory
+[09:42:04.179] [Info] [SetItem] Sätter Axe i slot
+[09:42:04.179] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[09:42:04.179] [Info] [UpdateUI] Uppdaterar UI för Axe
+[09:42:04.180] [Info] [EquipAxe] Equippade Axe
+[09:42:04.181] [Info] [ClearSlot] Rensar slot som innehöll: Axe

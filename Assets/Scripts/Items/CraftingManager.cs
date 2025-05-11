@@ -24,9 +24,12 @@ public class CraftingManager : MonoBehaviour
             ItemData axeItem = Resources.Load<ItemData>("Items/Axe");
             if (axeItem != null)
             {
-                Logger.Instance.Log($"[CraftAxe] Laddade yxa. isStackable: {axeItem.isStackable}", Logger.LogLevel.Info);
+                // Skapa en ny instans av yxan varje gång
+                ItemData newAxe = ScriptableObject.Instantiate(axeItem);
+                newAxe.name = axeItem.name;
+                Logger.Instance.Log($"[CraftAxe] Laddade yxa. isStackable: {newAxe.isStackable}", Logger.LogLevel.Info);
                 // Lägg till yxan i inventory
-                InventoryManager.Instance.AddItem(axeItem);
+                InventoryManager.Instance.AddItem(newAxe);
             }
             else
             {

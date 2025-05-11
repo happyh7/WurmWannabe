@@ -59,7 +59,8 @@ public class InventoryUI : MonoBehaviour
         // Uppdatera bara quantity för existerande items och ta bort items som inte längre finns
         foreach (var slot in slots)
         {
-            if (slot is AxeSlot) continue; // Skippa AxeSlot
+            // Skippa AxeSlot och slots som nyligen har fått ett item via drag & drop
+            if (slot is AxeSlot || slot.isLastUnequipTarget) continue;
             
             ItemData currentItem = slot.GetItem();
             if (currentItem != null)
@@ -80,7 +81,8 @@ public class InventoryUI : MonoBehaviour
             bool itemExists = false;
             foreach (var slot in slots)
             {
-                if (slot is AxeSlot) continue;
+                // Skippa AxeSlot och slots som nyligen har fått ett item via drag & drop
+                if (slot is AxeSlot || slot.isLastUnequipTarget) continue;
                 
                 if (slot.GetItem() == kvp.Key)
                 {
@@ -94,7 +96,8 @@ public class InventoryUI : MonoBehaviour
             {
                 foreach (var slot in slots)
                 {
-                    if (slot is AxeSlot) continue;
+                    // Skippa AxeSlot och slots som nyligen har fått ett item via drag & drop
+                    if (slot is AxeSlot || slot.isLastUnequipTarget) continue;
                     
                     if (slot.GetItem() == null)
                     {
