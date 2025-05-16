@@ -21,6 +21,12 @@ public class TreeHPBar : MonoBehaviour
     public void Show() => gameObject.SetActive(true);
     public void Hide() => gameObject.SetActive(false);
 
+    public void Initialize(GameTree tree)
+    {
+        SetTarget(tree.transform);
+        SetHP(tree.GetCurrentHP(), tree.GetMaxHP());
+    }
+
     private void LateUpdate()
     {
         if (targetTree != null)

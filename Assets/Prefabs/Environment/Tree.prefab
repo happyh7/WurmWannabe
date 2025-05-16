@@ -168,11 +168,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 3
-  health: 3
-  shakeDuration: 0.2
-  shakeIntensity: 0.1
-  woodPrefab: {fileID: 5750684354449621232, guid: 9d7ff94634935704bac212a6c2520404, type: 3}
-  woodDropAmount: 2
+  progressBarPrefab: {fileID: 0}
+  logPrefab: {fileID: 5750684354449621232, guid: 9d7ff94634935704bac212a6c2520404, type: 3}
+  logCount: 3
+  logSpreadRadius: 2
+  logForce: 5
+  logUpwardForce: 2
+  logTorque: 2
+  logLifetime: 300
 --- !u!114 &-5271026335481925979
 MonoBehaviour:
   m_ObjectHideFlags: 0

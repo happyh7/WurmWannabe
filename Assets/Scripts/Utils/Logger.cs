@@ -48,9 +48,9 @@ public class Logger : MonoBehaviour
             Directory.CreateDirectory(logsDirectory);
         }
 
-        string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         logFilePath = Path.Combine(logsDirectory, $"game_log_{timestamp}.txt");
-        
+            
         try
         {
             logWriter = new StreamWriter(logFilePath);
@@ -71,7 +71,7 @@ public class Logger : MonoBehaviour
 
         string timestamp = DateTime.Now.ToString("HH:mm:ss.fff");
         string logMessage = $"[{timestamp}] [{level}] {message}";
-
+        
         // Kontrollera om detta är en upprepad logg
         if (message == lastLogMessage && Time.time - lastLogTime < LOG_COOLDOWN)
         {
@@ -117,7 +117,7 @@ public class Logger : MonoBehaviour
                 Debug.Log(message);
                 break;
             case LogLevel.Info:
-                Debug.Log(message);
+        Debug.Log(message);
                 break;
             case LogLevel.Warning:
                 Debug.LogWarning(message);

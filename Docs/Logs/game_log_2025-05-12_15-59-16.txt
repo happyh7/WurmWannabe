@@ -1,0 +1,77 @@
+=== Spelloggar 2025-05-12_15-59-16 ===
+Logger initialiserad med minimumLogLevel: Info
+[15:59:17.010] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 1, innehöll: null
+[15:59:17.013] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 2, innehöll: null
+[15:59:17.013] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 3, innehöll: null
+[15:59:17.013] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 4, innehöll: null
+[15:59:17.014] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 5, innehöll: null
+[15:59:17.014] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 6, innehöll: null
+[15:59:17.026] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 7, innehöll: null
+[15:59:17.027] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 8, innehöll: null
+[15:59:17.027] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 9, innehöll: null
+[15:59:17.027] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 10, innehöll: null
+[15:59:17.028] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 11, innehöll: null
+[15:59:17.028] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 12, innehöll: null
+[15:59:17.028] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 13, innehöll: null
+[15:59:17.029] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 14, innehöll: null
+[15:59:17.029] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 15, innehöll: null
+[15:59:17.029] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 16, innehöll: null
+[15:59:17.030] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 17, innehöll: null
+[15:59:17.030] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 18, innehöll: null
+[15:59:17.030] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 19, innehöll: null
+[15:59:17.030] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 20, innehöll: null
+[15:59:22.344] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stick
+[15:59:22.344] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[15:59:22.346] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[15:59:22.348] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stone
+[15:59:22.348] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[15:59:22.348] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[15:59:23.778] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 1
+[15:59:23.779] [Info] [SetItem] Sätter Stick i slot
+[15:59:23.779] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 1
+[15:59:23.792] [Info] [InventorySlot.SetItem] Försöker sätta item: Stone i slot: Inventory Slot 2
+[15:59:23.792] [Info] [SetItem] Sätter Stone i slot
+[15:59:23.793] [Info] [SetItem] Stone är stackable, hämtar quantity från inventory: 1
+[15:59:26.348] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stick
+[15:59:26.349] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[15:59:26.349] [Info] [AddItem] Lade till Stick i inventory. Totalt: 2
+[15:59:26.350] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 1
+[15:59:26.350] [Info] [SetItem] Sätter Stick i slot
+[15:59:26.350] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 2
+[15:59:26.351] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stone
+[15:59:26.351] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[15:59:26.351] [Info] [AddItem] Lade till Stone i inventory. Totalt: 2
+[15:59:26.351] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 1
+[15:59:26.351] [Info] [SetItem] Sätter Stick i slot
+[15:59:26.351] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 2
+[15:59:28.950] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stick
+[15:59:28.950] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[15:59:28.951] [Info] [AddItem] Lade till Stick i inventory. Totalt: 3
+[15:59:28.951] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 1
+[15:59:28.951] [Info] [SetItem] Sätter Stick i slot
+[15:59:28.951] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 3
+[15:59:28.951] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stone
+[15:59:28.951] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[15:59:28.952] [Info] [AddItem] Lade till Stone i inventory. Totalt: 3
+[15:59:28.952] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 1
+[15:59:28.952] [Info] [SetItem] Sätter Stick i slot
+[15:59:28.952] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 3
+[15:59:29.814] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stick
+[15:59:29.814] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[15:59:29.814] [Info] [AddItem] Lade till Stick i inventory. Totalt: 4
+[15:59:29.814] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 1
+[15:59:29.815] [Info] [SetItem] Sätter Stick i slot
+[15:59:29.815] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 4
+[15:59:33.460] [Info] [InventoryManager.RemoveItem] Försöker ta bort item: Stone
+[15:59:33.460] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 2
+[15:59:33.460] [Info] [InventoryManager.RemoveItem] Försöker ta bort item: Stick
+[15:59:33.461] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 3
+[15:59:33.462] [Info] [CraftAxe] Laddade yxa. isStackable: False
+[15:59:33.462] [Info] [InventoryManager.AddItem] Försöker lägga till item: Axe
+[15:59:33.462] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[15:59:33.462] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[15:59:33.462] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 1
+[15:59:33.462] [Info] [SetItem] Sätter Stick i slot
+[15:59:33.462] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 3
+[15:59:33.465] [Info] [InventorySlot.SetItem] Försöker sätta item: Axe i slot: Inventory Slot 3
+[15:59:33.465] [Info] [SetItem] Sätter Axe i slot

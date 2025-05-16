@@ -53,17 +53,20 @@ public class EquipManager : MonoBehaviour
     public void EquipAxe(ItemData axe)
     {
         if (axe == null) return;
-
+        // Om yxan är trasig, visa notis och förhindra equip
+        if (axeDurabilities.ContainsKey(axe) && axeDurabilities[axe] <= 0)
+        {
+            NotificationManager.Instance?.ShowNotification("Det går inte att equippa en trasig yxa!");
+            return;
+        }
         // Om vi redan har en yxa equipad, unequippa den först
         if (equippedAxe != null)
         {
             UnequipAxe();
         }
-
         // Sätt den nya yxan i equip slot först
         axeSlot.SetItem(axe);
         equippedAxe = axe;
-        
         // Uppdatera axeIcon om den finns, annars använd yxans egen ikon
         if (axeIcon != null)
         {
@@ -90,11 +93,9 @@ public class EquipManager : MonoBehaviour
         {
             Logger.Instance.Log("[EquipAxe] axeIcon, axe.icon och defaultAxeSprite är null - kan inte uppdatera UI", Logger.LogLevel.Error);
         }
-        
         // Sätt equip-status
         isAxeEquipped = true;
         isAxeBroken = false;
-        
         // Återställ eller sätt ny durability
         if (axeDurabilities.ContainsKey(axe))
         {
@@ -107,7 +108,6 @@ public class EquipManager : MonoBehaviour
             axeDurabilities[axe] = MAX_DURABILITY;
             Logger.Instance.Log($"[EquipAxe] Satt ny durability för {axe.itemName} till {MAX_DURABILITY}", Logger.LogLevel.Info);
         }
-        
         // Ta bort yxan från inventory om den finns där
         if (InventoryManager.Instance.GetItemQuantity(axe) > 0)
         {
@@ -125,9 +125,7 @@ public class EquipManager : MonoBehaviour
         {
             Logger.Instance.Log("[EquipAxe] Axe finns inte i inventory - kanske redan equipad", Logger.LogLevel.Info);
         }
-        
         Logger.Instance.Log("[EquipAxe] Equippade Axe", Logger.LogLevel.Info);
-
         // Tvinga UI-refresh på alla relevanta slots
         if (axeSlot != null) axeSlot.UpdateUI();
         var allSlots = GameObject.FindObjectsByType<InventorySlot>(FindObjectsSortMode.None);
@@ -147,19 +145,19 @@ public class EquipManager : MonoBehaviour
         }
 
         Logger.Instance.Log($"[UnequipAxe] Börjar unequippa {equippedAxe.itemName}", Logger.LogLevel.Info);
-        ItemData axeToUnequip = equippedAxe;
+            ItemData axeToUnequip = equippedAxe;
         
         // Spara nuvarande durability innan vi unequippar
         axeDurabilities[axeToUnequip] = axeDurability;
         Logger.Instance.Log($"[UnequipAxe] Sparade durability {axeDurability} för {axeToUnequip.itemName}", Logger.LogLevel.Info);
-        
-        // Rensa equipment slot och referens först
-        axeSlot.ClearSlot();
-        equippedAxe = null;
+            
+            // Rensa equipment slot och referens först
+            axeSlot.ClearSlot();
+            equippedAxe = null;
         Logger.Instance.Log($"[UnequipAxe] Rensat axeSlot och equippedAxe referens", Logger.LogLevel.Info);
-        
-        // Lägg till yxan i inventory sist
-        InventoryManager.Instance.AddItem(axeToUnequip);
+            
+            // Lägg till yxan i inventory sist
+            InventoryManager.Instance.AddItem(axeToUnequip);
         Logger.Instance.Log($"[UnequipAxe] Lagt till {axeToUnequip.itemName} i inventory", Logger.LogLevel.Info);
         Logger.Instance.Log($"[UnequipAxe] Antal i inventory: {InventoryManager.Instance.GetItemQuantity(axeToUnequip)}", Logger.LogLevel.Debug);
 
@@ -190,7 +188,7 @@ public class EquipManager : MonoBehaviour
         Logger.Instance.Log($"[UnequipAxeToSlot] Unequippar yxa till specifik slot", Logger.LogLevel.Info);
         
         // Använd den ursprungliga yxan
-        ItemData axeToUnequip = equippedAxe;
+            ItemData axeToUnequip = equippedAxe;
 
         // Lägg till yxan i inventory först
         InventoryManager.Instance.AddItem(axeToUnequip);
@@ -198,10 +196,10 @@ public class EquipManager : MonoBehaviour
 
         // Sätt yxan i target slot
         targetSlot.SetItem(axeToUnequip);
-
+            
         // Rensa equipment slot och referens
-        axeSlot.ClearSlot();
-        equippedAxe = null;
+            axeSlot.ClearSlot();
+            equippedAxe = null;
         Logger.Instance.Log($"[UnequipAxeToSlot] Rensat axeSlot och equippedAxe referens", Logger.LogLevel.Info);
 
         isAxeEquipped = false;
@@ -236,12 +234,20 @@ public class EquipManager : MonoBehaviour
         }
     }
 
-    private void BreakAxe()
+    public void BreakAxe()
     {
         isAxeBroken = true;
-        if (axeIcon != null)
+        if (equippedAxe != null)
         {
-            axeIcon.sprite = brokenAxeSprite;
+            // Sätt yxans ikon till brokenAxeSprite innan den unequippas
+            equippedAxe.icon = brokenAxeSprite;
+            if (axeIcon != null)
+            {
+                axeIcon.sprite = brokenAxeSprite;
+            }
+            // Markera yxan som trasig (om ItemData har en flagga, annars hantera i dictionary)
+            axeDurabilities[equippedAxe] = 0;
+            UnequipAxe();
         }
     }
 

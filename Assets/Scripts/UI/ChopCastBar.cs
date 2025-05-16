@@ -22,4 +22,15 @@ public class ChopCastBar : MonoBehaviour
     {
         gameObject.SetActive(visible);
     }
+
+    public void UpdateProgress(float progress)
+    {
+        SetProgress(progress);
+    }
+
+    public void Initialize(string label)
+    {
+        // Om du har en textkomponent för label, sätt den här
+        // Annars lämna tom
+    }
 } 

@@ -22,107 +22,62 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(ItemData item)
     {
-        Logger.Instance.Log($"[InventoryManager.AddItem] Försöker lägga till item: {(item != null ? item.itemName : "null")}", Logger.LogLevel.Info);
-        if (item == null) return;
-
-        Logger.Instance.Log($"[AddItem] Försöker lägga till {item.itemName}. isStackable: {item.isStackable}", Logger.LogLevel.Info);
-
-        // För icke-stackbara items som inte är yxor, skapa en ny instans
-        if (!item.isStackable && !item.itemName.Contains("Axe"))
+        if (item == null)
         {
-            // Skapa en ny instans av ItemData för icke-stackbara items
-            ItemData newInstance = ScriptableObject.Instantiate(item);
-            newInstance.name = item.name; // Kopiera namnet från originalet
-            items[newInstance] = 1;
-            Logger.Instance.Log($"[AddItem] Lade till ny instans av {item.itemName} i inventory", Logger.LogLevel.Info);
+            Logger.Instance.Log("[AddItem] Försöker lägga till null item!", Logger.LogLevel.Error);
+            return;
         }
-        else if (!items.ContainsKey(item))
+
+        Logger.Instance.Log($"[AddItem] Lägger till {item.itemName} (isStackable: {item.isStackable})", Logger.LogLevel.Info);
+
+        // Om itemet är stackable, uppdatera bara kvantiteten
+        if (item.isStackable)
         {
-            // För stackbara items och yxor, använd original-referensen
-            items[item] = 1;
-            Logger.Instance.Log($"[AddItem] Lade till {item.itemName} i inventory. Totalt: 1", Logger.LogLevel.Info);
+            if (items.ContainsKey(item))
+            {
+                items[item]++;
+            }
+            else
+            {
+                items[item] = 1;
+            }
         }
         else
         {
-            // Om itemet kan stackas och redan finns, öka quantity
-            items[item]++;
-            Logger.Instance.Log($"[AddItem] Lade till {item.itemName} i inventory. Totalt: {items[item]}", Logger.LogLevel.Info);
+            // För non-stackable items, lägg till den befintliga instansen
+            if (!items.ContainsKey(item))
+            {
+                items[item] = 1;
+            }
         }
 
+        // Uppdatera UI
         UpdateUI();
     }
 
+    // UpdateUI behöver inte längre hantera placering av nya items, bara synka UI med items-dictionary
     private void UpdateUI()
     {
-        // Hitta alla inventory slots (exklusive AxeSlot) och sortera dem efter position
         var inventorySlots = FindObjectsByType<InventorySlot>(FindObjectsSortMode.None)
             .Where(slot => !(slot is AxeSlot))
             .OrderBy(slot => slot.transform.GetSiblingIndex())
             .ToList();
 
-        // Skapa en lista över items som inte har en slot
-        var unassignedItems = new List<ItemData>();
-        foreach (var kvp in items)
-        {
-            bool itemFound = false;
-            foreach (var slot in inventorySlots)
-            {
-                // Skippa slots som nyligen har fått ett item via drag & drop
-                if (slot.isLastUnequipTarget) continue;
-                
-                if (slot.GetItem() == kvp.Key)
-                {
-                    itemFound = true;
-                    break;
-                }
-            }
-            if (!itemFound)
-            {
-                unassignedItems.Add(kvp.Key);
-            }
-        }
-
-        // Placera ut oplacerade items i första lediga slot
-        foreach (var item in unassignedItems)
-        {
-            bool itemPlaced = false;
-            
-            // Om detta item nyligen har unequippats, försök placera det i den valda sloten först
-            var targetSlot = inventorySlots.FirstOrDefault(slot => slot.isLastUnequipTarget);
-            if (targetSlot != null && targetSlot.GetItem() == null)
-            {
-                targetSlot.SetItem(item);
-                targetSlot.isLastUnequipTarget = false; // Återställ flaggan
-                itemPlaced = true;
-                Logger.Instance.Log($"[UpdateUI] Placerade {item.itemName} i vald unequip slot", Logger.LogLevel.Info);
-            }
-
-            // Om itemet inte placerades i en specifik slot, hitta första lediga slot
-            if (!itemPlaced)
-            {
-                foreach (var slot in inventorySlots)
-                {
-                    // Skippa slots som nyligen har fått ett item via drag & drop
-                    if (slot.isLastUnequipTarget) continue;
-                    
-                    if (slot.GetItem() == null)
-                    {
-                        slot.SetItem(item);
-                        Logger.Instance.Log($"[UpdateUI] Placerade {item.itemName} i första lediga slot", Logger.LogLevel.Info);
-                        break;
-                    }
-                }
-            }
-        }
-
-        // Ta bort items som inte längre finns i inventory
+        // Synka alla slots med items-dictionary
+        var itemsList = items.Keys.ToList();
+        int itemIndex = 0;
         foreach (var slot in inventorySlots)
         {
-            // Skippa slots som nyligen har fått ett item via drag & drop
-            if (slot.isLastUnequipTarget) continue;
-            
-            var currentItem = slot.GetItem();
-            if (currentItem != null && !items.ContainsKey(currentItem))
+            if (itemIndex < itemsList.Count)
+            {
+                var item = itemsList[itemIndex];
+                if (item != null)
+                {
+                    slot.SetItem(item);
+                    itemIndex++;
+                }
+            }
+            else
             {
                 slot.ClearSlot();
             }

@@ -1,0 +1,72 @@
+=== Spelloggar 2025-05-12_07-54-02 ===
+Logger initialiserad med minimumLogLevel: Info
+[07:54:02.917] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 1, innehöll: null
+[07:54:02.920] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 2, innehöll: null
+[07:54:02.920] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 3, innehöll: null
+[07:54:02.921] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 4, innehöll: null
+[07:54:02.921] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 5, innehöll: null
+[07:54:02.922] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 6, innehöll: null
+[07:54:02.925] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 7, innehöll: null
+[07:54:02.925] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 8, innehöll: null
+[07:54:02.926] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 9, innehöll: null
+[07:54:02.926] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 10, innehöll: null
+[07:54:02.926] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 11, innehöll: null
+[07:54:02.927] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 12, innehöll: null
+[07:54:02.927] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 13, innehöll: null
+[07:54:02.927] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 14, innehöll: null
+[07:54:02.928] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 15, innehöll: null
+[07:54:02.928] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 16, innehöll: null
+[07:54:02.928] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 17, innehöll: null
+[07:54:02.929] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 18, innehöll: null
+[07:54:02.929] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 19, innehöll: null
+[07:54:02.929] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 20, innehöll: null
+[07:54:08.188] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stone
+[07:54:08.188] [Info] [AddItem] Försöker lägga till Stone. isStackable: True
+[07:54:08.190] [Info] [AddItem] Lade till Stone i inventory. Totalt: 1
+[07:54:10.305] [Info] [InventoryManager.AddItem] Försöker lägga till item: Stick
+[07:54:10.305] [Info] [AddItem] Försöker lägga till Stick. isStackable: True
+[07:54:10.306] [Info] [AddItem] Lade till Stick i inventory. Totalt: 1
+[07:54:11.346] [Info] [InventorySlot.SetItem] Försöker sätta item: Stone i slot: Inventory Slot 1
+[07:54:11.346] [Info] [SetItem] Sätter Stone i slot
+[07:54:11.346] [Info] [SetItem] Stone är stackable, hämtar quantity från inventory: 1
+[07:54:11.347] [Info] [UpdateUI] Uppdaterar UI för Stone
+[07:54:11.347] [Info] [InventorySlot.SetItem] Försöker sätta item: Stick i slot: Inventory Slot 2
+[07:54:11.348] [Info] [SetItem] Sätter Stick i slot
+[07:54:11.348] [Info] [SetItem] Stick är stackable, hämtar quantity från inventory: 1
+[07:54:11.348] [Info] [UpdateUI] Uppdaterar UI för Stick
+[07:54:12.183] [Info] [InventoryManager.RemoveItem] Försöker ta bort item: Stone
+[07:54:12.184] [Info] [RemoveItem] Tog bort Stone från inventory. Antal kvar: 0
+[07:54:12.184] [Info] [InventoryManager.RemoveItem] Försöker ta bort item: Stick
+[07:54:12.184] [Info] [RemoveItem] Tog bort Stick från inventory. Antal kvar: 0
+[07:54:12.213] [Info] [CraftAxe] Laddade yxa. isStackable: False
+[07:54:12.213] [Info] [InventoryManager.AddItem] Försöker lägga till item: Axe
+[07:54:12.214] [Info] [AddItem] Försöker lägga till Axe. isStackable: False
+[07:54:12.214] [Info] [AddItem] Lade till Axe i inventory. Totalt: 1
+[07:54:12.215] [Info] [InventorySlot.SetItem] Försöker sätta item: Axe i slot: Inventory Slot 3
+[07:54:12.215] [Info] [SetItem] Sätter Axe i slot
+[07:54:12.215] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[07:54:12.216] [Info] [UpdateUI] Uppdaterar UI för Axe
+[07:54:12.216] [Info] [UpdateUI] Placerade Axe i första lediga slot
+[07:54:12.217] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 1, innehöll: Stone
+[07:54:12.217] [Info] [ClearSlot] Rensar slot som innehöll: Stone
+[07:54:12.217] [Info] [UpdateUI] Rensar UI då inget item finns
+[07:54:12.217] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 2, innehöll: Stick
+[07:54:12.217] [Info] [ClearSlot] Rensar slot som innehöll: Stick
+[07:54:12.218] [Info] [UpdateUI] Rensar UI då inget item finns
+[07:54:13.047] [Info] [OnPointerClick] Dubbelklick på Axe i InventorySlot
+[07:54:13.048] [Info] [AxeSlot.SetItem] Sätter Axe i AxeSlot
+[07:54:13.049] [Info] [InventorySlot.SetItem] Försöker sätta item: Axe i slot: AxeSlot
+[07:54:13.049] [Info] [SetItem] Sätter Axe i slot
+[07:54:13.049] [Info] [SetItem] Axe är non-stackable, sätter quantity till 1
+[07:54:13.049] [Info] [UpdateUI] Uppdaterar UI för Axe
+[07:54:13.049] [Warning] [EquipAxe] axeIcon är null - använder yxans egen ikon
+[07:54:13.050] [Info] [EquipAxe] Satt ny durability för Axe till 100
+[07:54:13.050] [Info] [InventoryManager.RemoveItem] Försöker ta bort item: Axe
+[07:54:13.050] [Info] [RemoveItem] Tog bort Axe från inventory. Antal kvar: 0
+[07:54:13.050] [Info] [EquipAxe] Tog bort Axe från inventory
+[07:54:13.050] [Info] [EquipAxe] Equippade Axe
+[07:54:13.050] [Info] [UpdateUI] Uppdaterar UI för Axe
+[07:54:13.051] [Info] (Upprepat 2 gånger) [UpdateUI] Uppdaterar UI för Axe
+[07:54:13.051] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 3, innehöll: Axe
+[07:54:13.051] [Info] [ClearSlot] Rensar slot som innehöll: Axe
+[07:54:13.051] [Info] [UpdateUI] Rensar UI då inget item finns

@@ -44,35 +44,52 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public virtual void SetItem(ItemData item)
     {
-        Logger.Instance.Log($"[InventorySlot.SetItem] Försöker sätta item: {(item != null ? item.itemName : "null")} i slot: {this.name}", Logger.LogLevel.Info);
-        if (item == null)
-        {
-            Logger.Instance.Log("[SetItem] Försöker sätta null item i slot", Logger.LogLevel.Error);
-            return;
-        }
-
-        if (item == currentItem)
-        {
-            Logger.Instance.Log($"[SetItem] Försöker sätta samma item ({item.itemName}) i slot som redan finns där", Logger.LogLevel.Warning);
-            return;
-        }
-
-        Logger.Instance.Log($"[SetItem] Sätter {item.itemName} i slot", Logger.LogLevel.Info);
+        Logger.Instance.Log($"[InventorySlot.SetItem] Försöker sätta item: {item.itemName} i slot: {gameObject.name}", Logger.LogLevel.Info);
         currentItem = item;
-        
-        // Om det är ett non-stackable item, sätt quantity till 1
-        if (!item.isStackable)
+        if (item != null)
         {
-            quantity = 1;
-            Logger.Instance.Log($"[SetItem] {item.itemName} är non-stackable, sätter quantity till 1", Logger.LogLevel.Info);
-                    }
-                    else
-                    {
-            quantity = InventoryManager.Instance.GetItemQuantity(item);
-            Logger.Instance.Log($"[SetItem] {item.itemName} är stackable, hämtar quantity från inventory: {quantity}", Logger.LogLevel.Info);
-        }
+            Logger.Instance.Log($"[SetItem] Sätter {item.itemName} i slot", Logger.LogLevel.Info);
+            if (item.isStackable)
+            {
+                Logger.Instance.Log($"[SetItem] {item.itemName} är stackable, hämtar quantity från inventory: {InventoryManager.Instance.GetItemQuantity(item)}", Logger.LogLevel.Info);
+                if (quantityText != null)
+                {
+                    quantityText.text = InventoryManager.Instance.GetItemQuantity(item).ToString();
+                }
+            }
+            else
+            {
+                if (quantityText != null)
+                {
+                    quantityText.text = "";
+                }
+            }
 
-        UpdateUI();
+            // Aktivera durability bar för yxor
+            if (item.itemName.Contains("Axe") && durabilityBar != null)
+            {
+                durabilityBar.gameObject.SetActive(true);
+                durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurabilityFor(item), EquipManager.Instance.GetAxeMaxDurability());
+            }
+            else if (durabilityBar != null)
+            {
+                durabilityBar.gameObject.SetActive(false);
+            }
+
+            UpdateUI();
+        }
+        else
+        {
+            if (quantityText != null)
+            {
+                quantityText.text = "";
+            }
+            if (durabilityBar != null)
+            {
+                durabilityBar.gameObject.SetActive(false);
+            }
+            UpdateUI();
+        }
     }
 
     public virtual void ClearSlot()
@@ -92,7 +109,11 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             quantityText.text = "";
             quantityText.enabled = false;
         }
-        UpdateUI(); // Se till att durability-baren döljs när sloten töms
+        if (durabilityBar != null)
+        {
+            durabilityBar.gameObject.SetActive(false);
+        }
+        UpdateUI();
     }
 
     public virtual ItemData GetItem()
@@ -186,7 +207,7 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 // Flytta item från fromSlot till denna slot
                 ItemData itemToMove = fromSlot.GetItem();
                 if (itemToMove != null)
-                {
+            {
                     SetItem(itemToMove);
                     fromSlot.ClearSlot();
                     Logger.Instance.Log($"[OnDrop] Flyttade {currentItem.itemName} från slot {fromSlot.name} till {name}", Logger.LogLevel.Info);
@@ -246,35 +267,28 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (currentItem != null)
         {
             Logger.Instance.Log($"[UpdateUI] Uppdaterar UI för {currentItem.itemName}", Logger.LogLevel.Info);
-            
             if (icon != null)
             {
                 icon.sprite = currentItem.icon;
                 icon.enabled = true;
             }
-
             if (quantityText != null)
             {
-                if (currentItem.isStackable && quantity > 1)
+                if (currentItem.isStackable)
                 {
-                    quantityText.text = quantity.ToString();
-                    quantityText.enabled = true;
-                    Logger.Instance.Log($"[UpdateUI] Visar quantity {quantity} för stackable item", Logger.LogLevel.Info);
+                    quantityText.text = InventoryManager.Instance.GetItemQuantity(currentItem).ToString();
                 }
                 else
                 {
                     quantityText.text = "";
-                    quantityText.enabled = false;
-                    Logger.Instance.Log("[UpdateUI] Döljer quantity för non-stackable item eller quantity = 1", Logger.LogLevel.Info);
                 }
             }
 
-            // Durability bar
+            // Uppdatera durability bar för yxor
             if (currentItem.itemName.Contains("Axe") && durabilityBar != null)
             {
                 durabilityBar.gameObject.SetActive(true);
-                int durability = EquipManager.Instance.GetAxeDurabilityFor(currentItem);
-                durabilityBar.SetDurability(durability, EquipManager.Instance.GetAxeMaxDurability());
+                durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurabilityFor(currentItem), EquipManager.Instance.GetAxeMaxDurability());
             }
             else if (durabilityBar != null)
             {
@@ -283,7 +297,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         else
         {
-            Logger.Instance.Log("[UpdateUI] Rensar UI då inget item finns", Logger.LogLevel.Info);
             if (icon != null)
             {
                 icon.sprite = null;
@@ -292,7 +305,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             if (quantityText != null)
             {
                 quantityText.text = "";
-                quantityText.enabled = false;
             }
             if (durabilityBar != null)
             {

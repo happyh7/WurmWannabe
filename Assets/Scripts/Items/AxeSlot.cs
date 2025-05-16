@@ -12,7 +12,7 @@ public class AxeSlot : InventorySlot
         if (currentItem == null) return;
         Logger.Instance.Log($"[AxeSlot.OnBeginDrag] Börjar dra {currentItem.itemName}", Logger.LogLevel.Info);
         DraggedAxeItem = currentItem;
-        base.OnBeginDrag(eventData);
+            base.OnBeginDrag(eventData);
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -30,7 +30,7 @@ public class AxeSlot : InventorySlot
         
         // Ta bort ghost
         if (ghostImage != null)
-        {
+                    {
             Destroy(ghostImage);
             ghostImage = null;
         }
@@ -98,8 +98,11 @@ public class AxeSlot : InventorySlot
         base.SetItem(item);
         if (item != null && item.itemName.Contains("Axe"))
         {
-            durabilityBar.gameObject.SetActive(true);
-            durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurability(), EquipManager.Instance.GetAxeMaxDurability());
+            if (durabilityBar != null)
+            {
+                durabilityBar.gameObject.SetActive(true);
+                durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurability(), EquipManager.Instance.GetAxeMaxDurability());
+            }
         }
         else if (durabilityBar != null)
         {
@@ -111,6 +114,10 @@ public class AxeSlot : InventorySlot
     {
         if (currentItem == null) return;
         Logger.Instance.Log($"[AxeSlot.ClearSlot] Rensar AxeSlot som innehöll: {currentItem.itemName}", Logger.LogLevel.Info);
+        if (durabilityBar != null)
+        {
+            durabilityBar.gameObject.SetActive(false);
+        }
         base.ClearSlot();
     }
 
