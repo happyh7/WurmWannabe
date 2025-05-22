@@ -8,4 +8,5 @@ public class ItemData : ScriptableObject
     [TextArea]
     public string description;
     public bool isStackable = true;
+    public bool isUnbreakable = false;
 } 

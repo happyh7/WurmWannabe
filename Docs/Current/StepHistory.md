@@ -202,3 +202,12 @@ Här sparas alla steg som är avklarade, för historik och referens.
 - [x] Lägg till logik i TreeInteraction för att hantera denna loop
 - [x] Testa att progressionbaren och hugg-loop fungerar korrekt
 
+## Skills och SkillsUI (25/05/22)
+
+#### UI/Unity
+- [x] Skapa/uppdatera Notification Panel för att visa alla skilländringar
+- [x] Skapa skill-lista till höger om karaktärsbilden i inventory, med separat ram
+- [x] Lägg till progressbar under varje skill i UI
+- [x] Lägg till tooltip/hover-beskrivning för varje skill
+- [x] Lägg till ikoner för skills (valfritt)
+- [x] Lägg till stamina-bar i UI

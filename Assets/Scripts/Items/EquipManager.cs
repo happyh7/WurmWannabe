@@ -38,6 +38,18 @@ public class EquipManager : MonoBehaviour
         {
             axeIcon.sprite = defaultAxeSprite;
         }
+
+        // Ladda och equippa unbreakable yxan
+        ItemData unbreakableAxe = Resources.Load<ItemData>("Items/UnbreakableAxe");
+        if (unbreakableAxe != null)
+        {
+            EquipAxe(unbreakableAxe);
+            Logger.Instance.Log("[EquipManager.Start] Equippade Unbreakable Axe", Logger.LogLevel.Info);
+        }
+        else
+        {
+            Logger.Instance.Log("[EquipManager.Start] Kunde inte hitta Unbreakable Axe i Resources", Logger.LogLevel.Warning);
+        }
     }
 
     public bool HasAxeEquipped()
@@ -222,6 +234,12 @@ public class EquipManager : MonoBehaviour
     public void UseAxe()
     {
         if (!isAxeEquipped || isAxeBroken) return;
+
+        // Om yxan är unbreakable, minska inte durability
+        if (equippedAxe != null && equippedAxe.isUnbreakable)
+        {
+            return;
+        }
 
         axeDurability -= DURABILITY_LOSS_PER_USE;
 

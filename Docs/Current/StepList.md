@@ -10,7 +10,7 @@ Här listas mindre, hanterbara delsteg att arbeta med just nu.
 ### Förberedelser för skillsystem (detaljerad checklista)
 
 #### Design & Dokumentation
-- [ ] Skapa dokumentet Docs/Design/Skillsystem.md med en översikt av skillsystemet (vilka skills, XP-modell, progression, UI-idéer).
+- [x] Skapa dokumentet Docs/Design/Skillsystem.md med en översikt av skillsystemet (vilka skills, XP-modell, progression, UI-idéer).
 - [ ] Lista alla skills som ska finnas i demon (t.ex. Crafting, Woodcutting, Repairing, ev. Mining, Cooking, Building).
 - [ ] Definiera XP-kurva och level-up-regler (t.ex. XP per handling, ökande krav per level).
 - [ ] Beskriv vilka actions som ska ge XP och hur feedback ska visas till spelaren (t.ex. popup, ljud, UI).
@@ -30,19 +30,11 @@ Här listas mindre, hanterbara delsteg att arbeta med just nu.
     - Lägg till testfall: Kontrollera att skilltick ökar vid låg stamina och minskar kraftigt vid 0 stamina.
     - I Unity: Se till att PlayerSkillsManager och stamina-systemet är korrekt kopplade, och att NotificationPanel visar rätt mängd XP.
 
-#### UI/Unity
-- [x] Skapa/uppdatera Notification Panel för att visa alla skilländringar
-- [ ] Skapa skill-lista till höger om karaktärsbilden i inventory, med separat ram
-- [ ] Lägg till progressbar under varje skill i UI
-- [ ] Lägg till tooltip/hover-beskrivning för varje skill
-- [ ] Lägg till ikoner för skills (valfritt)
-- [x] Lägg till stamina-bar i UI
-
 #### Testning & Polish
 - [x] Testa att stamina och skills fungerar ihop (handlingar blockeras eller går långsammare vid låg stamina)
 - [x] Testa att alla skilländringar visas i Notification Panel
 - [ ] Testa att passiva skills ökar korrekt
-- [ ] Testa att action-tider påverkas av skills
+- [x] Testa att action-tider påverkas av skills
 - [ ] Testa att UI visar rätt värden och feedback
 - [ ] Balansera progression, stamina och action-tider
 
@@ -77,12 +69,12 @@ Här listas mindre, hanterbara delsteg att arbeta med just nu.
     - Finjustera avståndet för interaktion
 
 #### Generiskt SkillAction-system
-- [ ] Skapa ett generiskt system (SkillActionRunner/SkillActionRequest) som hanterar:
+- [x] Skapa ett generiskt system (SkillActionRunner/SkillActionRequest) som hanterar:
     - Start av handling (sparar stamina vid start)
     - Beräkning av faktisk cast-tid utifrån stamina
     - Håller koll på om stamina når 0 under handlingen
     - Uträkning av skilltick baserat på cast-tid (Skilltick = Basvärde × (Faktisk CastTime / CastTime vid 100% stamina), men om stamina når 0 under handlingen ges bara 1% skilltick)
     - Kan kopplas till CastBar, men funkar även utan UI
-- [ ] Alla actions (hugga, crafta, laga, etc) ska anropa detta system och skicka in bas-cast-tid, bas-skilltick, skilltyp etc.
-- [ ] Systemet ska vara lätt att återanvända för framtida skills/actions och kunna användas både med och utan UI.
-- [ ] Dokumentera och testa systemet noggrant.
+- [x] Alla actions (hugga, crafta, laga, etc) ska anropa detta system och skicka in bas-cast-tid, bas-skilltick, skilltyp etc.
+- [x] Systemet ska vara lätt att återanvända för framtida skills/actions och kunna användas både med och utan UI.
+- [x] Dokumentera och testa systemet noggrant.

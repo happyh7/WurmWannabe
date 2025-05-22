@@ -1,0 +1,32 @@
+=== Spelloggar 2025-05-16_17-29-23 ===
+Logger initialiserad med minimumLogLevel: Info
+[17:29:23.638] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 1, innehöll: null
+[17:29:23.640] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 2, innehöll: null
+[17:29:23.640] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 3, innehöll: null
+[17:29:23.641] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 4, innehöll: null
+[17:29:23.641] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 5, innehöll: null
+[17:29:23.641] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 6, innehöll: null
+[17:29:23.644] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 7, innehöll: null
+[17:29:23.644] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 8, innehöll: null
+[17:29:23.645] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 9, innehöll: null
+[17:29:23.645] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 10, innehöll: null
+[17:29:23.645] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 11, innehöll: null
+[17:29:23.646] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 12, innehöll: null
+[17:29:23.646] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 13, innehöll: null
+[17:29:23.647] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 14, innehöll: null
+[17:29:23.647] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 15, innehöll: null
+[17:29:23.647] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 16, innehöll: null
+[17:29:23.647] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 17, innehöll: null
+[17:29:23.647] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 18, innehöll: null
+[17:29:23.648] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 19, innehöll: null
+[17:29:23.648] [Info] [InventorySlot.ClearSlot] Försöker rensa slot: Inventory Slot 20, innehöll: null
+[17:29:23.650] [Info] [AxeSlot.SetItem] Sätter Unbreakable Axe i AxeSlot
+[17:29:23.651] [Info] [InventorySlot.SetItem] Försöker sätta item: Unbreakable Axe i slot: AxeSlot
+[17:29:23.651] [Info] [SetItem] Sätter Unbreakable Axe i slot
+[17:29:23.652] [Info] [UpdateUI] Uppdaterar UI för Unbreakable Axe
+[17:29:23.653] [Warning] [EquipAxe] axeIcon är null - använder yxans egen ikon
+[17:29:23.654] [Info] [EquipAxe] Satt ny durability för Unbreakable Axe till 100
+[17:29:23.654] [Info] [EquipAxe] Axe finns inte i inventory - kanske redan equipad
+[17:29:23.654] [Info] [EquipAxe] Equippade Axe
+[17:29:23.654] [Info] [UpdateUI] Uppdaterar UI för Unbreakable Axe
+[17:29:23.654] [Info] [EquipManager.Start] Equippade Unbreakable Axe

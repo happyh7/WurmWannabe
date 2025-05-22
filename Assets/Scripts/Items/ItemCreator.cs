@@ -57,5 +57,39 @@ public class ItemCreator
         
         AssetDatabase.Refresh();
     }
+
+    [MenuItem("Tools/Create Unbreakable Axe Item")]
+    public static void CreateUnbreakableAxeItem()
+    {
+        // Hitta axe ikonen först
+        string iconPath = "Assets/Sprites/Items/axe.png";
+        Sprite axeSprite = AssetDatabase.LoadAssetAtPath<Sprite>(iconPath);
+        
+        if (axeSprite == null)
+        {
+            Debug.LogError("Could not find axe sprite at: " + iconPath);
+            return;
+        }
+
+        // Skapa ny ItemData för den unbreakable yxan
+        ItemData axe = ScriptableObject.CreateInstance<ItemData>();
+        axe.itemName = "Unbreakable Axe";
+        axe.description = "A magical axe that never breaks";
+        axe.isStackable = false;
+        axe.isUnbreakable = true;
+        axe.icon = axeSprite;
+
+        // Spara i Resources-mappen
+        string assetPath = "Assets/Resources/Items/UnbreakableAxe.asset";
+        string folderPath = System.IO.Path.GetDirectoryName(assetPath);
+        if (!System.IO.Directory.Exists(folderPath))
+        {
+            System.IO.Directory.CreateDirectory(folderPath);
+        }
+
+        AssetDatabase.CreateAsset(axe, assetPath);
+        AssetDatabase.SaveAssets();
+        Debug.Log("Created new Unbreakable Axe item!");
+    }
 }
 #endif 

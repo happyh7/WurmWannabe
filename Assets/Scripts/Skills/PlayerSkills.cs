@@ -50,15 +50,12 @@ public class PlayerSkills : MonoBehaviour
         SkillData skill = GetSkill(type);
         if (skill == null) return;
 
-        float staminaPercent = stamina / maxStamina;
-        float staminaFactor = staminaPercent > 0f ? 0.01f + 0.99f * staminaPercent : 0.01f;
-        float gain = baseValue * skill.skillEase * (1f - (skill.value / 100f)) * staminaFactor;
-        if (gain < 0.01f) gain = 0.01f; // Minsta tick
+        float gain = baseValue;
+        
         skill.value += gain;
         if (skill.value > 100f) skill.value = 100f;
         skill.lastGainAmount = gain;
         skill.lastGainTime = Time.time;
-        // Här kan du lägga till feedback till NotificationPanel
         Debug.Log($"+{gain:F2} {type} (totalt: {skill.value:F2})");
         if (NotificationManager.Instance != null)
         {
