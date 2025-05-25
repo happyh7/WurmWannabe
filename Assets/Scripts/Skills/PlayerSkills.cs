@@ -39,31 +39,32 @@ public class PlayerSkills : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returnerar SkillData för angiven typ.
+    /// </summary>
     public SkillData GetSkill(SkillType type)
     {
         return skills.Find(s => s.skillType == type);
     }
 
-    // Öka en skill med rätt logik
+    /// <summary>
+    /// Ökar en skill med rätt logik.
+    /// </summary>
     public void GainSkill(SkillType type, float baseValue = 1.0f)
     {
         SkillData skill = GetSkill(type);
         if (skill == null) return;
-
         float gain = baseValue;
-        
         skill.value += gain;
         if (skill.value > 100f) skill.value = 100f;
         skill.lastGainAmount = gain;
         skill.lastGainTime = Time.time;
-        Debug.Log($"+{gain:F2} {type} (totalt: {skill.value:F2})");
-        if (NotificationManager.Instance != null)
-        {
-            NotificationManager.Instance.ShowNotification($"+{gain:F2} {type}!");
-        }
+        NotificationManager.Instance?.ShowNotification($"+{gain:F2} {type}!");
     }
 
-    // Exempel på stamina-kostnad
+    /// <summary>
+    /// Drar stamina och returnerar mängden som faktiskt användes.
+    /// </summary>
     public float UseStamina(float amount)
     {
         float used = Mathf.Min(stamina, amount);
@@ -72,22 +73,25 @@ public class PlayerSkills : MonoBehaviour
         return used;
     }
 
+    /// <summary>
+    /// Returnerar stamina i procent (0-1).
+    /// </summary>
     public float GetStaminaPercent()
     {
         return stamina / maxStamina;
     }
 
+    /// <summary>
+    /// Återställer stamina med angivet belopp.
+    /// </summary>
     public void RecoverStamina(float amount)
     {
-        Debug.Log($"PlayerSkills: Recovering {amount} stamina");
         stamina = Mathf.Min(maxStamina, stamina + amount);
-        Debug.Log($"PlayerSkills: Stamina now at {stamina}");
     }
 
     // För att öka passiva skills automatiskt
     public void AddPassiveSkill(SkillType type, float baseValue = 0.2f)
     {
-        Debug.Log($"PlayerSkills: Adding passive skill {type}");
         GainSkill(type, baseValue);
     }
 

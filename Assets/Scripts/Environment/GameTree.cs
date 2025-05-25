@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameTree : MonoBehaviour
 {
@@ -15,25 +13,17 @@ public class GameTree : MonoBehaviour
     [SerializeField] private float logLifetime = 300f; // 5 minuter
 
     private float currentHP;
-    private Vector3 originalPosition;
-    private Quaternion originalRotation;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    private Rigidbody2D rb;
-    private new PolygonCollider2D collider;
 
     private void Start()
     {
         currentHP = maxHP;
-        originalPosition = transform.position;
-        originalRotation = transform.rotation;
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             originalColor = spriteRenderer.color;
         }
-        rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<PolygonCollider2D>();
     }
 
     public void TakeDamage(float amount)

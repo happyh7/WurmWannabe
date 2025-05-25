@@ -103,7 +103,5 @@ public class TreeSpriteCreator : MonoBehaviour
             importer.textureCompression = TextureImporterCompression.Uncompressed;
             importer.SaveAndReimport();
         }
-
-        Debug.Log("Tree sprite skapad i: " + path);
     }
 } 

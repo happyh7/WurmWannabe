@@ -80,29 +80,17 @@ public class AxeSlot : InventorySlot
         }
     }
 
+    /// <summary>
+    /// Sätter ett item i AxeSlot.
+    /// </summary>
     public override void SetItem(ItemData item)
     {
-        if (item == null)
-        {
-            Logger.Instance.Log("[AxeSlot.SetItem] Försöker sätta null item i AxeSlot", Logger.LogLevel.Error);
-            return;
-        }
-
-        if (!item.itemName.Contains("Axe"))
-        {
-            Logger.Instance.Log($"[AxeSlot.SetItem] Försöker sätta icke-yxa ({item.itemName}) i AxeSlot", Logger.LogLevel.Warning);
-            return;
-        }
-
-        Logger.Instance.Log($"[AxeSlot.SetItem] Sätter {item.itemName} i AxeSlot", Logger.LogLevel.Info);
+        if (item == null || !item.itemName.Contains("Axe")) return;
         base.SetItem(item);
-        if (item != null && item.itemName.Contains("Axe"))
+        if (item.itemName.Contains("Axe") && durabilityBar != null)
         {
-            if (durabilityBar != null)
-            {
-                durabilityBar.gameObject.SetActive(true);
-                durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurability(), EquipManager.Instance.GetAxeMaxDurability());
-            }
+            durabilityBar.gameObject.SetActive(true);
+            durabilityBar.SetDurability(EquipManager.Instance.GetAxeDurability(), EquipManager.Instance.GetAxeMaxDurability());
         }
         else if (durabilityBar != null)
         {
@@ -110,10 +98,12 @@ public class AxeSlot : InventorySlot
         }
     }
 
+    /// <summary>
+    /// Tömmer AxeSlot på item.
+    /// </summary>
     public override void ClearSlot()
     {
         if (currentItem == null) return;
-        Logger.Instance.Log($"[AxeSlot.ClearSlot] Rensar AxeSlot som innehöll: {currentItem.itemName}", Logger.LogLevel.Info);
         if (durabilityBar != null)
         {
             durabilityBar.gameObject.SetActive(false);

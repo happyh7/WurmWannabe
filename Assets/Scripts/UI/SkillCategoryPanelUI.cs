@@ -52,11 +52,6 @@ public class SkillCategoryPanelUI : MonoBehaviour
         if (parent != null)
             LayoutRebuilder.ForceRebuildLayoutImmediate(parent as RectTransform);
 
-        Debug.Log($"{gameObject.name} UpdateUI: Content active: {content.activeSelf}, Content childCount: {content.transform.childCount}, Content LayoutGroup: {content.GetComponent<LayoutGroup>() != null}, Content anchoring: {content.GetComponent<RectTransform>().anchorMin} - {content.GetComponent<RectTransform>().anchorMax}, Content sizeDelta: {content.GetComponent<RectTransform>().sizeDelta}, Content preferredHeight: {content.GetComponent<LayoutElement>()?.preferredHeight}");
-
-        // DEBUG: Logga storlek och antal skills
-        Debug.Log($"{gameObject.name} expanded: {expanded}, height: {totalHeight}, Content children: {content.transform.childCount}");
-
         if (expandIcon != null)
         {
             if (expanded && expandedSprite != null)

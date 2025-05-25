@@ -42,8 +42,6 @@ public class NotificationManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-            Debug.Log("Enter pressed!");
         // Öppna chatten med Enter om den är stängd
         if (!chatOpen && Input.GetKeyDown(KeyCode.Return))
         {

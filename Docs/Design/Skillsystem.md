@@ -97,4 +97,11 @@ Här beskrivs hur skillsystemet i WurmWannabe är tänkt att fungera, inklusive 
 - [ ] Balansera skillprogression, actiontider och stamina
 - [ ] Lägg till fler skills/actions vid behov
 - [ ] Designa och implementera Notification Panel för alla skilländringar
-- [ ] Implementera stamina-systemet och koppla till skills 
+- [ ] Implementera stamina-systemet och koppla till skills
+- [ ] Förtydliga sannolikhetskurva för skilltick och om det finns softcap/hardcap. Lägg till exempel.
+- [ ] Lägg till tabell eller graf som visar StaminaFactor vid olika nivåer (t.ex. 100%, 50%, 10%, 0%).
+- [ ] Specificera exakt när och hur mycket passiva skills ökar (varje gång? proc-chans? olika för olika skills?).
+- [ ] Lista några exempel på achievements och vad de ger (om något).
+- [ ] Förtydliga om skillreset är debug-funktion eller gameplay.
+- [ ] Lägg till riktlinjer för balans/testning, t.ex. "En ny spelare ska nå 10 i Woodcutting på X minuter".
+- [ ] (Valfritt) Lägg till sekvensdiagram eller flow-exempel för SkillAction-systemet. 

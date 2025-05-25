@@ -44,14 +44,11 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public virtual void SetItem(ItemData item)
     {
-        Logger.Instance.Log($"[InventorySlot.SetItem] Försöker sätta item: {item.itemName} i slot: {gameObject.name}", Logger.LogLevel.Info);
-        currentItem = item;
         if (item != null)
         {
-            Logger.Instance.Log($"[SetItem] Sätter {item.itemName} i slot", Logger.LogLevel.Info);
+            currentItem = item;
             if (item.isStackable)
             {
-                Logger.Instance.Log($"[SetItem] {item.itemName} är stackable, hämtar quantity från inventory: {InventoryManager.Instance.GetItemQuantity(item)}", Logger.LogLevel.Info);
                 if (quantityText != null)
                 {
                     quantityText.text = InventoryManager.Instance.GetItemQuantity(item).ToString();
@@ -94,10 +91,8 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public virtual void ClearSlot()
     {
-        Logger.Instance.Log($"[InventorySlot.ClearSlot] Försöker rensa slot: {this.name}, innehöll: {(currentItem != null ? currentItem.itemName : "null")}", Logger.LogLevel.Info);
         if (currentItem == null) return; // Om sloten redan är tom, hoppa över
 
-        Logger.Instance.Log($"[ClearSlot] Rensar slot som innehöll: {(currentItem != null ? currentItem.itemName : "inget item")}", Logger.LogLevel.Info);
         currentItem = null;
         if (icon != null)
         {
@@ -126,8 +121,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (currentItem == null) return;
 
-        Logger.Instance.Log($"[OnBeginDrag] Börjar dra {currentItem.itemName}", Logger.LogLevel.Info);
-        
         // Skapa en ghost image
         ghostImage = new GameObject("Ghost");
         ghostImage.transform.SetParent(transform.root);
@@ -169,7 +162,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public virtual void OnDrop(PointerEventData eventData)
     {
-        Logger.Instance.Log($"[InventorySlot.OnDrop] eventData.pointerDrag: {(eventData.pointerDrag != null ? eventData.pointerDrag.name : "null")}, this: {this.name}, currentItem: {(currentItem != null ? currentItem.itemName : "null")}", Logger.LogLevel.Info);
         if (eventData.pointerDrag == null) return;
 
         InventorySlot fromSlot = eventData.pointerDrag.GetComponent<InventorySlot>();
@@ -178,12 +170,9 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             // Om vi droppar från AxeSlot
             if (fromSlot is AxeSlot)
             {
-                Logger.Instance.Log($"[InventorySlot.OnDrop] Droppar från AxeSlot: {fromSlot.name}, item: {(AxeSlot.DraggedAxeItem != null ? AxeSlot.DraggedAxeItem.itemName : "null")}", Logger.LogLevel.Info);
-
                 ItemData savedAxe = AxeSlot.DraggedAxeItem;
                 if (savedAxe == null)
                 {
-                    Logger.Instance.Log("[OnDrop] Ingen yxa att flytta från AxeSlot (DraggedAxeItem är null)", Logger.LogLevel.Warning);
                     return;
                 }
 
@@ -197,7 +186,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 return;
             }
 
-            Logger.Instance.Log($"[InventorySlot.OnDrop] Droppar från InventorySlot: {fromSlot.name}, item: {(fromSlot.GetItem() != null ? fromSlot.GetItem().itemName : "null")}", Logger.LogLevel.Info);
             // Om vi droppar på samma slot, gör ingenting
             if (fromSlot == this) return;
 
@@ -210,7 +198,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             {
                     SetItem(itemToMove);
                     fromSlot.ClearSlot();
-                    Logger.Instance.Log($"[OnDrop] Flyttade {currentItem.itemName} från slot {fromSlot.name} till {name}", Logger.LogLevel.Info);
                 }
             }
             // Om vi droppar på en slot med samma item och item är stackable
@@ -220,7 +207,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 quantity += fromSlot.quantity;
                 fromSlot.ClearSlot();
                 UpdateUI();
-                Logger.Instance.Log($"[OnDrop] Stackade {currentItem.itemName} från slot {fromSlot.name} till {name}", Logger.LogLevel.Info);
             }
             // Om vi droppar på en slot med ett annat item
             else if (fromSlot.GetItem() != null)
@@ -234,8 +220,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 // Tvinga båda slots att uppdatera sitt UI (extra säkerhet)
                 UpdateUI();
                 fromSlot.UpdateUI();
-
-                Logger.Instance.Log($"[OnDrop] Bytte plats på {currentItem.itemName} och {tempItem.itemName}", Logger.LogLevel.Info);
             }
             return;
         }
@@ -251,7 +235,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             if (timeSinceLastClick <= doubleClickTimeThreshold)
             {
                 // Dubbelklick detekterad
-                Logger.Instance.Log($"[OnPointerClick] Dubbelklick på {currentItem.itemName} i {GetType().Name}", Logger.LogLevel.Info);
                 if (EquipManager.Instance != null)
                 {
                     EquipManager.Instance.EquipAxe(currentItem);
@@ -266,7 +249,6 @@ public class InventorySlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (currentItem != null)
         {
-            Logger.Instance.Log($"[UpdateUI] Uppdaterar UI för {currentItem.itemName}", Logger.LogLevel.Info);
             if (icon != null)
             {
                 icon.sprite = currentItem.icon;

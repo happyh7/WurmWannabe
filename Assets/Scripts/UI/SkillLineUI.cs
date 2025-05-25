@@ -84,9 +84,6 @@ public class SkillLineUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     float maxX = panelRight - tooltipWidth - padding;
                     tooltipScreenPos.x = Mathf.Clamp(tooltipScreenPos.x, minX, maxX);
 
-                    // Debug-logg för verticalOffset och Y-position
-                    Debug.Log($"verticalOffset: {verticalOffset}, tooltipScreenPos.y: {tooltipScreenPos.y}, rowTopY: {screenPos.y}");
-
                     // Konvertera till local position i SkillsPanel
                     Vector2 localPoint;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(

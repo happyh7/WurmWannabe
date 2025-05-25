@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChopCastBar : MonoBehaviour
+public class PlayerCastBar : MonoBehaviour
 {
     [SerializeField] private Image fillImage;
 

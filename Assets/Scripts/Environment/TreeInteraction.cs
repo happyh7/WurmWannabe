@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 public class TreeInteraction : MonoBehaviour
 {
@@ -8,20 +7,17 @@ public class TreeInteraction : MonoBehaviour
     [SerializeField] private EquipManager equipManager;
     [SerializeField] private GameObject treeHPBarPrefab;
     [SerializeField] private Canvas worldSpaceCanvas;
-    [SerializeField] private GameObject chopCastBarPrefab;
+    [SerializeField] private GameObject castBarPrefab;
     [SerializeField] private float castTime = 2f; // Tid det tar att hugga ett träd
     [SerializeField] private Vector3 castBarOffset = new Vector3(0, 0.6f, 0);
+    [SerializeField] private SkillActionRunner skillActionRunner;
 
     private GameTree currentTree;
     private GameTree lastHighlightedTree;
     private TreeHPBar currentHPBar;
     private float lastChopTime = -10f;
-    private float castTimer = 0f;
-    private bool isCasting = false;
-    private ChopCastBar activeCastBar;
     private float hpBarAutoHideTime = 0f;
     private float hpBarAutoHideDelay = 2.5f; // sekunder
-    private bool wasHoldingE = false;
     private Camera mainCamera;
 
     private void Start()
@@ -82,17 +78,12 @@ public class TreeInteraction : MonoBehaviour
                 {
                     // Ingen ny target, dölj castbar och avbryt
                     CancelChop();
-                    if (activeCastBar != null)
-                    {
-                        Destroy(activeCastBar.gameObject);
-                        activeCastBar = null;
-                    }
                 }
             }
         }
 
         // Auto-hide HPBar om spelaren inte hugger
-        if (currentHPBar != null && (currentTree == null || Time.time > hpBarAutoHideTime) && !isCasting)
+        if (currentHPBar != null && (currentTree == null || Time.time > hpBarAutoHideTime))
         {
             Destroy(currentHPBar.gameObject);
             currentHPBar = null;
@@ -102,7 +93,7 @@ public class TreeInteraction : MonoBehaviour
         bool justPressedE = Input.GetKeyDown(interactKey);
 
         // Hantera interaktion med träd och starta cast eller visa varning
-        if (closestTree != null && holdingE && !isCasting)
+        if (closestTree != null && holdingE && !PlayerSkills.Instance.IsActionInProgress)
         {
             if (equipManager != null && equipManager.HasAxeEquipped())
             {
@@ -122,26 +113,10 @@ public class TreeInteraction : MonoBehaviour
         }
 
         // Avbryt cast om E släpps
-        if (isCasting && !holdingE)
+        if (PlayerSkills.Instance.IsActionInProgress && !holdingE)
         {
             CancelChop();
         }
-
-        // Hantera pågående huggningsanimation
-        if (isCasting)
-        {
-            castTimer += Time.deltaTime;
-            if (activeCastBar != null)
-                activeCastBar.UpdateProgress(castTimer / castTime);
-
-            if (castTimer >= castTime)
-            {
-                CompleteChop();
-            }
-        }
-
-        // Spara state för nästa frame
-        wasHoldingE = holdingE;
     }
 
     private void StartChop(GameTree tree)
@@ -149,11 +124,6 @@ public class TreeInteraction : MonoBehaviour
         if (tree == null || tree.GetCurrentHP() <= 0)
         {
             CancelChop();
-            if (activeCastBar != null)
-            {
-                Destroy(activeCastBar.gameObject);
-                activeCastBar = null;
-            }
             if (currentHPBar != null)
             {
                 Destroy(currentHPBar.gameObject);
@@ -161,29 +131,14 @@ public class TreeInteraction : MonoBehaviour
             }
             return;
         }
-        Debug.Log("Starting chop on tree");
         currentTree = tree;
-        isCasting = true;
-        castTimer = 0f;
-        if (PlayerSkills.Instance != null) PlayerSkills.Instance.IsActionInProgress = true;
-
-        // Skapa cast bar ovanför spelaren
-        if (chopCastBarPrefab != null && worldSpaceCanvas != null)
-        {
-            GameObject castBarObj = Instantiate(chopCastBarPrefab, transform.position + castBarOffset, Quaternion.identity, worldSpaceCanvas.transform);
-            activeCastBar = castBarObj.GetComponent<ChopCastBar>();
-            if (activeCastBar != null)
-                activeCastBar.Initialize("Hugger...");
-        }
-
-        // Ta bort eventuell gammal HPBar
+        PlayerSkills.Instance.IsActionInProgress = true;
+        // Skapa HP bar för det nya trädet
         if (currentHPBar != null)
         {
             Destroy(currentHPBar.gameObject);
             currentHPBar = null;
         }
-
-        // Skapa ny HP bar för det nya trädet
         if (treeHPBarPrefab != null && worldSpaceCanvas != null)
         {
             GameObject hpBarObj = Instantiate(treeHPBarPrefab, tree.transform.position + new Vector3(0, 2f, 0), Quaternion.identity, worldSpaceCanvas.transform);
@@ -191,93 +146,65 @@ public class TreeInteraction : MonoBehaviour
             if (currentHPBar != null)
                 currentHPBar.Initialize(tree);
         }
-        // Sätt auto-hide timer
         hpBarAutoHideTime = Time.time + hpBarAutoHideDelay;
+        // Starta action via SkillActionRunner
+        if (skillActionRunner != null)
+        {
+            var request = new SkillActionRequest(
+                baseCastTime: castTime, // Använd Inspector-värdet
+                baseSkillTick: 1f,
+                skillType: SkillType.Woodcutting,
+                staminaCost: 10f,
+                onStart: null,
+                onComplete: () =>
+                {
+                    if (currentTree != null)
+                    {
+                        currentTree.TakeDamage(1f);
+                        if (equipManager != null)
+                        {
+                            equipManager.UseAxe();
+                            if (equipManager.IsAxeBroken())
+                            {
+                                ShowNotification("Din yxa gick sönder!");
+                                CancelChop();
+                                return;
+                            }
+                        }
+                        if (currentHPBar != null)
+                        {
+                            currentHPBar.SetHP(currentTree.GetCurrentHP(), currentTree.GetMaxHP());
+                            hpBarAutoHideTime = Time.time + hpBarAutoHideDelay;
+                            if (currentTree.GetCurrentHP() <= 0)
+                            {
+                                Destroy(currentHPBar.gameObject);
+                                currentHPBar = null;
+                                currentTree = null;
+                            }
+                        }
+                    }
+                    lastChopTime = Time.time;
+                    // Starta ny cast om E hålls och trädet lever
+                    if (currentTree != null && currentTree.GetCurrentHP() > 0 && Input.GetKey(interactKey))
+                    {
+                        StartChop(currentTree);
+                    }
+                },
+                onCancel: () =>
+                {
+                    PlayerSkills.Instance.IsActionInProgress = false;
+                }
+            );
+            skillActionRunner.StartAction(request);
+        }
     }
 
     private void CancelChop()
     {
-        isCasting = false;
-        castTimer = 0f;
-        if (PlayerSkills.Instance != null) PlayerSkills.Instance.IsActionInProgress = false;
-        if (activeCastBar != null)
+        PlayerSkills.Instance.IsActionInProgress = false;
+        if (skillActionRunner != null)
         {
-            Destroy(activeCastBar.gameObject);
-            activeCastBar = null;
-        }
-    }
-
-    private void CompleteChop()
-    {
-        Debug.Log("Completing chop");
-        isCasting = false;
-        castTimer = 0f;
-        if (PlayerSkills.Instance != null) PlayerSkills.Instance.IsActionInProgress = false;
-
-        if (activeCastBar != null)
-        {
-            Destroy(activeCastBar.gameObject);
-            activeCastBar = null;
-        }
-
-        // Stamina-kostnad
-        if (PlayerSkills.Instance != null)
-        {
-            float staminaCost = 10f;
-            PlayerSkills.Instance.UseStamina(staminaCost);
-        }
-
-        if (currentTree != null)
-        {
-            Debug.Log("Dealing damage to tree");
-            currentTree.TakeDamage(1f);
-
-            // Minska yxans hållbarhet
-            if (equipManager != null)
-            {
-                equipManager.UseAxe();
-                // Om yxan är trasig efter användning, visa notis och avbryt cast
-                if (equipManager.IsAxeBroken())
-                {
-                    ShowNotification("Din yxa gick sönder!");
-                    CancelChop();
-                    return;
-                }
-            }
-
-            // Uppdatera HP-bar
-            if (currentHPBar != null)
-            {
-                currentHPBar.SetHP(currentTree.GetCurrentHP(), currentTree.GetMaxHP());
-                // Sätt auto-hide timer
-                hpBarAutoHideTime = Time.time + hpBarAutoHideDelay;
-                // Om trädet dog, ta bort HP-baren och nollställ currentTree
-                if (currentTree.GetCurrentHP() <= 0)
-                {
-                    Destroy(currentHPBar.gameObject);
-                    currentHPBar = null;
-                    currentTree = null;
-                }
-            }
-
-            // Lägg till skill
-            if (PlayerSkills.Instance != null)
-            {
-                Debug.Log("Adding woodcutting skill");
-                PlayerSkills.Instance.GainSkill(SkillType.Woodcutting);
-            }
-            else
-            {
-                Debug.Log("PlayerSkills instance not found!");
-            }
-        }
-
-        lastChopTime = Time.time;
-
-        // Starta bara ny cast om det finns ett träd kvar och HP > 0
-        if (currentTree != null && currentTree.GetCurrentHP() > 0 && Input.GetKey(interactKey))
-        {
-            StartChop(currentTree);
+            skillActionRunner.CancelAction();
         }
     }
 
@@ -290,7 +217,6 @@ public class TreeInteraction : MonoBehaviour
 
     private void ShowNotification(string message, float duration = 2f)
     {
-        Debug.Log($"Showing notification: {message}");
         NotificationManager.Instance?.ShowNotification(message);
     }
 

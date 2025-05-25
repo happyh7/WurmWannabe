@@ -8,8 +8,12 @@ public class SkillActionRunner : MonoBehaviour
     private GameObject activeCastBar;
     private Coroutine currentActionCoroutine;
 
+    /// <summary>
+    /// Startar en skill action enligt request.
+    /// </summary>
     public void StartAction(SkillActionRequest request)
     {
+        if (request == null) return;
         if (currentActionCoroutine != null)
         {
             StopCoroutine(currentActionCoroutine);
@@ -47,14 +51,13 @@ public class SkillActionRunner : MonoBehaviour
             float before = PlayerSkills.Instance.stamina;
             float used = PlayerSkills.Instance.UseStamina(staminaCostPerSecond * delta);
             float after = PlayerSkills.Instance.stamina;
-            Debug.Log($"[SkillActionRunner] Stamina före: {before:F2}, använd: {used:F2}, efter: {after:F2}");
             if (PlayerSkills.Instance.stamina <= 0f && !staminaHitZero)
                 staminaHitZero = true;
             // Uppdatera CastBar-position
             if (activeCastBar != null)
             {
                 activeCastBar.transform.position = transform.position + new Vector3(0, 0.6f, 0);
-                var castBarScript = activeCastBar.GetComponent<ChopCastBar>();
+                var castBarScript = activeCastBar.GetComponent<PlayerCastBar>();
                 if (castBarScript != null)
                 {
                     castBarScript.SetProgress(Mathf.Clamp01(elapsed / castTime));
@@ -73,6 +76,9 @@ public class SkillActionRunner : MonoBehaviour
         currentActionCoroutine = null;
     }
 
+    /// <summary>
+    /// Avbryter pågående action och stänger castbar.
+    /// </summary>
     public void CancelAction()
     {
         if (currentActionCoroutine != null)
