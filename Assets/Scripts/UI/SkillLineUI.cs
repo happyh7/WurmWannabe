@@ -9,12 +9,43 @@ public class SkillLineUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public TextMeshProUGUI skillName;
     public Slider progressBar;
     public TextMeshProUGUI valueText;
+    public TextMeshProUGUI valueTextInBar;
     public Sprite placeholderIcon;
     public string tooltipText;
     private bool pointerOver = false;
     private float hoverTime = 0f;
     private const float tooltipDelay = 0.5f;
     private bool tooltipVisible = false;
+    public SkillType skillType;
+    private const float maxTooltipWidth = 300f; // Maxbredd på tooltipen i px
+
+    void OnEnable()
+    {
+        PlayerSkills.OnSkillValueChanged += OnSkillValueChanged;
+    }
+    void OnDisable()
+    {
+        PlayerSkills.OnSkillValueChanged -= OnSkillValueChanged;
+    }
+    void OnDestroy()
+    {
+        PlayerSkills.OnSkillValueChanged -= OnSkillValueChanged;
+    }
+    private void OnSkillValueChanged(SkillType changedType, float newValue)
+    {
+        if (changedType == skillType)
+        {
+            // Progress till nästa heltal
+            float currentLevel = Mathf.Floor(newValue);
+            float progressToNext = newValue - currentLevel;
+            progressBar.value = progressToNext; // Slider min=0, max=1
+
+            if (valueTextInBar != null)
+                valueTextInBar.text = $"{newValue:F8}";
+            if (valueText != null)
+                valueText.text = $"{newValue:F1}/100";
+        }
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -43,58 +74,80 @@ public class SkillLineUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 RectTransform rt = GetComponent<RectTransform>();
                 Vector3[] corners = new Vector3[4];
                 rt.GetWorldCorners(corners);
-                // Top center av raden
+                // Top center och bottom center av raden
                 Vector3 topCenter = (corners[1] + corners[2]) / 2f;
-                Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(null, topCenter);
+                Vector3 bottomCenter = (corners[0] + corners[3]) / 2f;
 
-                // Deklarera tooltipPos här så den alltid finns
-                Vector2 tooltipPos = screenPos + new Vector2(0, 30); // 30 pixlar ovanför
+                // Hitta SkillsPanel och dess RectTransform
+                SkillsUIManager skillsUIManager = GetComponentInParent<SkillsUIManager>();
+                RectTransform skillsPanelRT = null;
+                Canvas canvas = null;
+                if (skillsUIManager != null && skillsUIManager.skillsPanel != null)
+                {
+                    skillsPanelRT = skillsUIManager.skillsPanel.GetComponent<RectTransform>();
+                    canvas = skillsUIManager.skillsPanel.GetComponentInParent<Canvas>();
+                }
+                if (skillsPanelRT != null && canvas != null)
+                {
+                    RectTransform tooltipRT = SkillTooltip.instance.tooltipPanel.GetComponent<RectTransform>();
+                    float tooltipWidth = 100f; // Fast bredd
+                    float tooltipHeight = 40f; // Fast höjd
+                    float padding = 5f;
 
+                    // Sätt storlek på tooltip-panelen
+                    tooltipRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, tooltipWidth);
+                    tooltipRT.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, tooltipHeight);
+
+                    // Konvertera world -> screen -> local i SkillsPanel
+                    Vector2 screenPosTop = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, topCenter);
+                    Vector2 screenPosBottom = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, bottomCenter);
+                    Vector2 localPointTop;
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(skillsPanelRT, screenPosTop, canvas.worldCamera, out localPointTop);
+                    Vector2 localPointBottom;
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(skillsPanelRT, screenPosBottom, canvas.worldCamera, out localPointBottom);
+
+                    // Panelens storlek och pivot
+                    float panelWidth = skillsPanelRT.rect.width;
+                    float panelHeight = skillsPanelRT.rect.height;
+                    float panelPivotX = skillsPanelRT.pivot.x;
+
+                    // Försök placera ovanför
+                    float tooltipX = padding - panelWidth * panelPivotX;
+                    Vector2 tooltipLocalPos = new Vector2(tooltipX, localPointTop.y + padding);
+                    bool fitsAbove = (tooltipLocalPos.y + tooltipHeight <= panelHeight / 2f);
+                    if (!fitsAbove)
+                    {
+                        // Placera under
+                        tooltipLocalPos = new Vector2(tooltipX, localPointBottom.y - tooltipHeight - padding);
+                        if (tooltipLocalPos.y < -panelHeight / 2f + padding)
+                            tooltipLocalPos.y = -panelHeight / 2f + padding;
+                    }
+
+                    // Sätt localPosition på tooltip-panelen
+                    tooltipRT.SetParent(skillsPanelRT, false); // Se till att den är child till SkillsPanel
+                    tooltipRT.localPosition = tooltipLocalPos;
+                    // Visa tooltip
+                    SkillTooltip.Show(tooltipText, tooltipRT.position);
+                    tooltipVisible = true;
+                }
+            }
+            // --- NYTT: Uppdatera maxbredd varje frame när tooltipen är synlig ---
+            if (tooltipVisible)
+            {
                 SkillsUIManager skillsUIManager = GetComponentInParent<SkillsUIManager>();
                 RectTransform skillsPanelRT = null;
                 if (skillsUIManager != null && skillsUIManager.skillsPanel != null)
                 {
                     skillsPanelRT = skillsUIManager.skillsPanel.GetComponent<RectTransform>();
                 }
-                if (skillsPanelRT != null)
+                if (skillsPanelRT != null && SkillTooltip.instance != null && SkillTooltip.instance.tooltipPanel != null)
                 {
-                    Vector3[] panelCorners = new Vector3[4];
-                    skillsPanelRT.GetWorldCorners(panelCorners);
-                    float panelLeft = panelCorners[0].x;
-                    float panelRight = panelCorners[2].x;
-                    float panelTop = panelCorners[1].y;
-                    float panelBottom = panelCorners[0].y;
-
-                    RectTransform tooltipRT = SkillTooltip.instance.tooltipPanel.GetComponent<RectTransform>();
-                    float tooltipHeight = tooltipRT.rect.height;
-                    float tooltipWidth = tooltipRT.rect.width;
-
+                    float panelWidth = skillsPanelRT.rect.width;
                     float padding = 5f;
-                    float verticalOffset = 105f; // Återställ till värde som gav bra placering ovanför raden
-                    // Använd screenPos.y istället för rowTopY
-                    Vector2 tooltipScreenPos = new Vector2(screenPos.x - tooltipWidth / 2, screenPos.y + verticalOffset);
-
-                    float underOffset = 5f; // Exakt samma luft under raden som ovanför
-                    // Om tooltipen sticker utanför panelens topp, placera under raden istället
-                    if (tooltipScreenPos.y > panelTop - padding)
-                        tooltipScreenPos.y = screenPos.y - tooltipHeight - underOffset;
-
-                    // Clamp X så tooltipen alltid är helt innanför panelen
-                    float minX = panelLeft + padding;
-                    float maxX = panelRight - tooltipWidth - padding;
-                    tooltipScreenPos.x = Mathf.Clamp(tooltipScreenPos.x, minX, maxX);
-
-                    // Konvertera till local position i SkillsPanel
-                    Vector2 localPoint;
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                        skillsPanelRT, tooltipScreenPos, null, out localPoint);
-
-                    // Sätt localPosition på tooltip-panelen
-                    tooltipRT.localPosition = localPoint;
-
-                    // Visa tooltip
-                    SkillTooltip.Show(tooltipText, tooltipRT.position);
-                    tooltipVisible = true;
+                    RectTransform tooltipRT = SkillTooltip.instance.tooltipPanel.GetComponent<RectTransform>();
+                    var layoutElement = tooltipRT.GetComponent<UnityEngine.UI.LayoutElement>();
+                    if (layoutElement != null)
+                        layoutElement.preferredWidth = Mathf.Min(panelWidth - 2 * padding, maxTooltipWidth);
                 }
             }
         }
@@ -106,9 +159,17 @@ public class SkillLineUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void SetSkill(SkillData data)
     {
+        skillType = data.skillType;
         skillName.text = SkillData.GetDisplayName(data.skillType);
-        progressBar.value = data.value / 100f;
+
+        // Progress till nästa heltal
+        float currentLevel = Mathf.Floor(data.value);
+        float progressToNext = data.value - currentLevel;
+        progressBar.value = progressToNext; // Slider min=0, max=1
+
         valueText.text = $"{data.value:F1}/100";
+        if (valueTextInBar != null)
+            valueTextInBar.text = $"{data.value:F8}";
         // Sätt rätt ikon
         if (icon != null)
         {
